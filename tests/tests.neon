@@ -1,0 +1,10 @@
+application:
+    scanDirs: false
+services:
+    testbench.presenterMock: Testbench\Mocks\PresenterMock
+extensions:
+    chat: HeroesofAbenez\Chat\DI\ChatExtension
+chat:
+    databaseAdapter: HeroesofAbenez\Chat\FakeDatabaseAdapter
+    chats:
+        example: HeroesofAbenez\Chat\IExampleChatControlFactory

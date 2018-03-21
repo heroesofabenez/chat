@@ -1,0 +1,49 @@
+{
+    "name": "heroesofabenez/chat",
+    "description": "A simple chat component",
+    "keywords": [
+      "simple", "chat", "component", "nette"
+    ],
+    "type": "project",
+    "license": "BSD-3-Clause",
+    "homepage": "https://heroesofabenez.gitlab.io",
+    "authors": [
+        {
+            "name": "Jakub Konečný",
+            "email": "jakub.konecny2@centrum.cz",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "source": "https://gitlab.com/heroesofabenez/chat/",
+        "issues": "https://gitlab.com/heroesofabenez/chat/issues"
+    },
+    "require": {
+        "php": ">=7.1.0",
+        "nette/application": "^2.4",
+        "nette/di": "^2.4.10",
+        "latte/latte": "^2.4",
+        "nette/utils": "^2.4",
+        "nexendrie/translation": "^1.1.1",
+        "nexendrie/utils": "^1.1"
+    },
+    "require-dev": {
+        "nexendrie/code-quality": "dev-master",
+        "nexendrie/site-generator": "1.0.x-dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "HeroesofAbenez\\Chat\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "HeroesofAbenez\\Chat\\": "tests/HeroesofAbenez/Chat"
+        }
+    },
+    "config": {
+        "classmap-authoritative": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
