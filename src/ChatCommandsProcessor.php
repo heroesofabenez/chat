@@ -8,7 +8,7 @@ namespace HeroesofAbenez\Chat;
  *
  * @author Jakub Konečný
  */
-class ChatCommandsProcessor implements IChatMessageProcessor {
+final class ChatCommandsProcessor implements IChatMessageProcessor {
   use \Nette\SmartObject;
   
   /** @var IChatCommand[] */

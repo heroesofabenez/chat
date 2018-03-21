@@ -19,7 +19,7 @@ use HeroesofAbenez\Chat\ChatCommandsProcessor,
  *
  * @author Jakub Konečný
  */
-class ChatExtension extends \Nette\DI\CompilerExtension {
+final class ChatExtension extends \Nette\DI\CompilerExtension {
   /** @internal */
   public const SERVICE_CHAT_COMMANDS_PROCESSOR = "commandsProcessor";
   /** @internal */
