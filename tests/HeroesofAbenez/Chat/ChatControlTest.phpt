@@ -30,6 +30,24 @@ final class ChatControlTest extends \Tester\TestCase {
     Assert::same("cs", $this->control->lang);
   }
   
+  public function testMessagesPerPage() {
+    $originalValue = $this->control->messagesPerPage;
+    Assert::type("int", $originalValue);
+    $this->control->messagesPerPage = 1;
+    Assert::same(1, $this->control->messagesPerPage);
+    $this->control->messagesPerPage = -1;
+    Assert::same(0, $this->control->messagesPerPage);
+    $this->control->messagesPerPage = $originalValue;
+  }
+  
+  public function testCharacterProfileLink() {
+    $originalValue = $this->control->characterProfileLink;
+    Assert::type("string", $originalValue);
+    $this->control->characterProfileLink = "abc";
+    Assert::same("abc", $this->control->characterProfileLink);
+    $this->control->characterProfileLink = $originalValue;
+  }
+  
   public function testTranslator() {
     $loader = new NeonLoader();
     $loader->folders = [__DIR__ . "/../../../src/lang"];

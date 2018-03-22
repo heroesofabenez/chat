@@ -13,6 +13,8 @@ use Nette\Localization\ITranslator,
  * @author Jakub Konečný
  * @property ITranslator $translator
  * @property string $lang
+ * @property int $messagesPerPage
+ * @property string $characterProfileLink
  * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  */
 abstract class ChatControl extends \Nette\Application\UI\Control {
@@ -63,6 +65,25 @@ abstract class ChatControl extends \Nette\Application\UI\Control {
   
   public function setLang(string $lang): void {
     $this->lang = $lang;
+  }
+  
+  public function getMessagesPerPage(): int {
+    return $this->messagesPerPage;
+  }
+  
+  public function setMessagesPerPage(int $messagesPerPage): void {
+    if($messagesPerPage < 0) {
+      $messagesPerPage = 0;
+    }
+    $this->messagesPerPage = $messagesPerPage;
+  }
+  
+  public function getCharacterProfileLink(): string {
+    return $this->characterProfileLink;
+  }
+  
+  public function setCharacterProfileLink(string $characterProfileLink): void {
+    $this->characterProfileLink = $characterProfileLink;
   }
   
   public function addMessageProcessor(IChatMessageProcessor $processor): void {
