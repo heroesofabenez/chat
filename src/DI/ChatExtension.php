@@ -24,6 +24,8 @@ final class ChatExtension extends \Nette\DI\CompilerExtension {
   public const SERVICE_CHAT_COMMANDS_PROCESSOR = "commandsProcessor";
   /** @internal */
   public const SERVICE_DATABASE_ADAPTER = "databaseAdapter";
+  /** @internal */
+  public const TAG_CHAT = "chat.chat";
   
   protected $defaults = [
     "chats" => [],
@@ -113,7 +115,8 @@ final class ChatExtension extends \Nette\DI\CompilerExtension {
     $chats = $this->getChats();
     foreach($chats as $name => $interface) {
       $builder->addDefinition($this->prefix($name))
-        ->setImplement($interface);
+        ->setImplement($interface)
+        ->addTag(static::TAG_CHAT);
     }
     $messageProcessors = $this->getMessageProcessors();
     foreach($messageProcessors as $name => $processor) {
