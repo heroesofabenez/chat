@@ -112,7 +112,7 @@ final class ChatCommandsProcessor implements IChatMessageProcessor {
   public function parse(string $text): ?string {
     $commandName = $this->extractCommand($text);
     if($commandName === "") {
-      return NULL;
+      return null;
     }
     $command = $this->getCommand($commandName);
     $params = $this->extractParameters($text);

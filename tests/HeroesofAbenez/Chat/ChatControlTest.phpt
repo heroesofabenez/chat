@@ -17,7 +17,7 @@ final class ChatControlTest extends \Tester\TestCase {
   protected $control;
   
   public function setUp() {
-    static $control = NULL;
+    static $control = null;
     if(is_null($control)) {
       $control = $this->getService(IExampleChatControlFactory::class)->create();
     }

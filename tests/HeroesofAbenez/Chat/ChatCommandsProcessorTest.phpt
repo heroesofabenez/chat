@@ -12,7 +12,7 @@ final class ChatCommandsProcessorTest extends \Tester\TestCase {
   const TEXT = "/" . self::COMMAND_NAME;
   
   /** @var ChatCommandsProcessor */
-  protected $model = NULL;
+  protected $model = null;
   
   use \Testbench\TCompiledContainer;
   

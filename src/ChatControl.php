@@ -20,7 +20,7 @@ use Nette\Localization\ITranslator,
 abstract class ChatControl extends \Nette\Application\UI\Control {
   /** @var IDatabaseAdapter */
   protected $database;
-  /** @var ITranslator|Translator|NULL */
+  /** @var ITranslator|Translator|null */
   protected $translator;
   /** @var string */
   protected $lang = "";
@@ -41,7 +41,7 @@ abstract class ChatControl extends \Nette\Application\UI\Control {
   /** @var int */
   protected $messagesPerPage = 25;
   
-  public function __construct(IDatabaseAdapter $databaseAdapter, string $textColumn, int $textValue, string $characterColumn = NULL, $characterValue = NULL, ITranslator $translator = NULL) {
+  public function __construct(IDatabaseAdapter $databaseAdapter, string $textColumn, int $textValue, string $characterColumn = null, $characterValue = null, ITranslator $translator = null) {
     parent::__construct();
     $this->database = $databaseAdapter;
     $this->translator = $translator;
@@ -135,7 +135,7 @@ abstract class ChatControl extends \Nette\Application\UI\Control {
         return $result;
       }
     }
-    return NULL;
+    return null;
   }
   
   /**
