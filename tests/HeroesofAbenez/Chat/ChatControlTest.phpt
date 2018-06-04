@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace HeroesofAbenez\Chat;
 
-use Tester\Assert,
-    Nexendrie\Translation\Translator,
-    Nexendrie\Translation\Loaders\NeonLoader;
+use Tester\Assert;
+use Nexendrie\Translation\Translator;
+use Nexendrie\Translation\Loaders\NeonLoader;
 
 require __DIR__ . "/../../bootstrap.php";
 

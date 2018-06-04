@@ -5,10 +5,10 @@ namespace HeroesofAbenez\Chat\DI;
 
 require __DIR__ . "/../../../bootstrap.php";
 
-use Tester\Assert,
-    HeroesofAbenez\Chat\InvalidChatControlFactoryException,
-    HeroesofAbenez\Chat\InvalidMessageProcessorException,
-    HeroesofAbenez\Chat\InvalidDatabaseAdapterException;
+use Tester\Assert;
+use HeroesofAbenez\Chat\InvalidChatControlFactoryException;
+use HeroesofAbenez\Chat\InvalidMessageProcessorException;
+use HeroesofAbenez\Chat\InvalidDatabaseAdapterException;
 
 final class ChatExtensionTest extends \Tester\TestCase {
   use \Testbench\TCompiledContainer;

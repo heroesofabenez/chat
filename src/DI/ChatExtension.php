@@ -3,16 +3,16 @@ declare(strict_types=1);
 
 namespace HeroesofAbenez\Chat\DI;
 
-use HeroesofAbenez\Chat\ChatCommandsProcessor,
-    HeroesofAbenez\Chat\IChatCommand,
-    Nette\Utils\Validators,
-    HeroesofAbenez\Chat\ChatControl,
-    HeroesofAbenez\Chat\IChatMessageProcessor,
-    HeroesofAbenez\Chat\IDatabaseAdapter,
-    Nette\DI\MissingServiceException,
-    HeroesofAbenez\Chat\InvalidChatControlFactoryException,
-    HeroesofAbenez\Chat\InvalidMessageProcessorException,
-    HeroesofAbenez\Chat\InvalidDatabaseAdapterException;
+use HeroesofAbenez\Chat\ChatCommandsProcessor;
+use HeroesofAbenez\Chat\IChatCommand;
+use Nette\Utils\Validators;
+use HeroesofAbenez\Chat\ChatControl;
+use HeroesofAbenez\Chat\IChatMessageProcessor;
+use HeroesofAbenez\Chat\IDatabaseAdapter;
+use Nette\DI\MissingServiceException;
+use HeroesofAbenez\Chat\InvalidChatControlFactoryException;
+use HeroesofAbenez\Chat\InvalidMessageProcessorException;
+use HeroesofAbenez\Chat\InvalidDatabaseAdapterException;
 
 /**
  * ChatExtension
