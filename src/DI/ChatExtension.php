@@ -33,6 +33,7 @@ final class ChatExtension extends \Nette\DI\CompilerExtension {
       self::SERVICE_CHAT_COMMANDS_PROCESSOR => ChatCommandsProcessor::class,
     ],
     "databaseAdapter" => "",
+    "characterProfileLink" => "",
   ];
   
   /**
@@ -75,6 +76,15 @@ final class ChatExtension extends \Nette\DI\CompilerExtension {
   
   /**
    * @throws \Nette\Utils\AssertionException
+   */
+  protected function getCharacterProfileLink(): string {
+    $config = $this->getConfig($this->defaults);
+    Validators::assertField($config, "characterProfileLink", "string");
+    return $config["characterProfileLink"];
+  }
+  
+  /**
+   * @throws \Nette\Utils\AssertionException
    * @throws InvalidMessageProcessorException
    */
   protected function getMessageProcessors(): array {
@@ -113,10 +123,14 @@ final class ChatExtension extends \Nette\DI\CompilerExtension {
   public function loadConfiguration(): void {
     $builder = $this->getContainerBuilder();
     $chats = $this->getChats();
+    $characterProfileLink = $this->getCharacterProfileLink();
     foreach($chats as $name => $interface) {
-      $builder->addDefinition($this->prefix($name))
+      $chat = $builder->addDefinition($this->prefix($name))
         ->setImplement($interface)
         ->addTag(static::TAG_CHAT);
+      if($characterProfileLink !== "") {
+        $chat->addSetup("setCharacterProfileLink", [$characterProfileLink]);
+      }
     }
     $messageProcessors = $this->getMessageProcessors();
     foreach($messageProcessors as $name => $processor) {
