@@ -28,7 +28,7 @@ final class ChatCommandsProcessorTest extends \Tester\TestCase {
     $model->addCommand(new Test2Command());
     Assert::same("test", $model->parse("/" . Test2Command::NAME));
     Assert::exception(function() use($model) {
-      $model->addCommand(new Test2Command);
+      $model->addCommand(new Test2Command());
     }, CommandNameAlreadyUsedException::class);
   }
   
@@ -88,7 +88,7 @@ final class ChatCommandsProcessorTest extends \Tester\TestCase {
   
   public function testParse() {
     $model = clone $this->model;
-    $model->addCommand(new Test2Command);
+    $model->addCommand(new Test2Command());
     Assert::same("passed", $this->model->parse(self::TEXT));
     Assert::null($model->parse("anagfdffd"));
     Assert::null($model->parse("/anagfdffd"));
