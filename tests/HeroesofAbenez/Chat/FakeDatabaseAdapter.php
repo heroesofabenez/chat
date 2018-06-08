@@ -28,7 +28,6 @@ final class FakeDatabaseAdapter implements IDatabaseAdapter {
   }
   
   public function addMessage(string $message, string $filterColumn, int $filterValue): void {
-  
   }
 }
 ?>
