@@ -9,3 +9,7 @@ Installation
 ------------
 
 The best way to install it is via Composer. Just add **heroesofabenez/chat** to your dependencies.
+
+Documentation
+-------------
+See: https://heroesofabenez.gitlab.io/chat .
