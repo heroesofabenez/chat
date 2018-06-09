@@ -7,6 +7,7 @@ use HeroesofAbenez\Chat\ChatCommandsProcessor;
 use HeroesofAbenez\Chat\IChatCommand;
 use Nette\Utils\Validators;
 use HeroesofAbenez\Chat\ChatControl;
+use HeroesofAbenez\Chat\NewChatMessageFormFactory;
 use HeroesofAbenez\Chat\IChatMessageProcessor;
 use HeroesofAbenez\Chat\IDatabaseAdapter;
 use Nette\DI\MissingServiceException;
@@ -24,6 +25,8 @@ final class ChatExtension extends \Nette\DI\CompilerExtension {
   public const SERVICE_CHAT_COMMANDS_PROCESSOR = "commandsProcessor";
   /** @internal */
   public const SERVICE_DATABASE_ADAPTER = "databaseAdapter";
+  /** @internal */
+  public const SERVICE_NEW_MESSAGE_FORM = "newMessageForm";
   /** @internal */
   public const TAG_CHAT = "chat.chat";
   
@@ -140,6 +143,8 @@ final class ChatExtension extends \Nette\DI\CompilerExtension {
     $databaseAdapter = $this->getDatabaseAdapter();
     $builder->addDefinition($this->prefix(static::SERVICE_DATABASE_ADAPTER))
       ->setType($databaseAdapter);
+    $builder->addDefinition($this->prefix(static::SERVICE_NEW_MESSAGE_FORM))
+      ->setType(NewChatMessageFormFactory::class);
   }
   
   protected function registerMessageProcessors(): void {

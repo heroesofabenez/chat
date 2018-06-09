@@ -1,1 +1,6 @@
 peopleInRoom: "People in this room:"
+newMessageForm:
+    messageField:
+        empty: "Enter message."
+    submitButton:
+        label: "Send"

@@ -1,1 +1,6 @@
 peopleInRoom: "Lidé v této místnosti:"
+newMessageForm:
+    messageField:
+        empty: "Zadej zprávu."
+    submitButton:
+        label: "Odeslat"

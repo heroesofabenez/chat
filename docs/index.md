@@ -51,7 +51,7 @@ interface IGroupChatControlFactory {
 
 With this code, we have created group chat. It isn't much of code, is it? Let's examine it closely now.
 
-We create a new class which extends the abstract component from this package. In your own chats you usually need to define just constructor, the base class handles all remaining logic. The constructor of the base class requires database adapter (it will be described later), names and values for fields which identify texts and people for this chat (if both are identified by same field and value, you pass one pair and then nulls) and translator. There is currently only text to translate: "People in this room:". You have to use this parameter only if you do not want to use the default one.
+We create a new class which extends the abstract component from this package. In your own chats you usually need to define just constructor, the base class handles all remaining logic. The constructor of the base class requires database adapter (it will be described later), names and values for fields which identify texts and people for this chat (if both are identified by same field and value, you pass one pair and then nulls) and translator. You have to use this parameter only if you do not want to use the default one.
 
 The factory for component is pretty straightforward: an interface with method create.
 
@@ -161,25 +161,17 @@ use Nette\Application\UI\Form;
 class ChatPresenter extends Presenter {
   /** @var \App\Chat\IGroupChatControlFactory @inject */
   public $groupChatFactory;
+  /** @var \HeroesofAbenez\Chat\NewChatMessageFormFactory @inject */
+  public $newMessageFormFactory;
   
   protected function createComponentGroupChat() {
     return $this->groupChatFactory->create();
   }
   
   protected function createComponentNewChatMessageForm(): Form {
-    $form = new Form();
-    $form->addText("message")
-      ->setRequired("Enter message.");
-    $form->addSubmit("send", "Send");
     /** @var \App\Chat\GroupChatControl $chat */
     $chat = $this->groupChatFactory->create();
-    $form->addComponent($chat, "chat");
-    $form->onSuccess[] = function(Form $form, array $values) {
-      /** @var \App\Chat\GroupChatControl $chat */
-      $chat = $form->getComponent("chat");
-      $chat->newMessage($values["message"]);
-    };
-    return $form;
+    return $this->newMessageFormFactory->create($chat);
   }
 }
 ?>
