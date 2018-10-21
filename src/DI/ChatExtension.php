@@ -29,7 +29,8 @@ final class ChatExtension extends \Nette\DI\CompilerExtension {
   public const SERVICE_NEW_MESSAGE_FORM = "newMessageForm";
   /** @internal */
   public const TAG_CHAT = "chat.chat";
-  
+
+  /** @var array */
   protected $defaults = [
     "chats" => [],
     "messageProcessors" => [
