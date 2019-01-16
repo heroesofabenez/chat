@@ -1,2 +1,5 @@
+Version 1.0.0+dev
+- raised minimal version of PHP to 7.2
+
 Version 1.0.0
 - first version
