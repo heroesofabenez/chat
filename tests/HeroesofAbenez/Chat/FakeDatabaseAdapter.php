@@ -13,9 +13,6 @@ final class FakeDatabaseAdapter implements IDatabaseAdapter {
     return new ChatCharacter(1, "fake");
   }
 
-  /**
-   * @param mixed $value
-   */
   public function getTexts(string $column, $value, int $limit): ChatMessagesCollection {
     $texts = new ChatMessagesCollection();
     for($i = 1; $i <= $limit; $i++) {
@@ -24,9 +21,6 @@ final class FakeDatabaseAdapter implements IDatabaseAdapter {
     return $texts;
   }
 
-  /**
-   * @param mixed $value
-   */
   public function getCharacters(string $column, $value): ChatCharactersCollection {
     $characters = new ChatCharactersCollection();
     $characters[] = $this->getFakeCharacter();

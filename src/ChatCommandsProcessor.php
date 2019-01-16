@@ -107,10 +107,7 @@ final class ChatCommandsProcessor implements IChatMessageProcessor {
     }
     throw new CommandNotFoundException("Command $name is not defined.");
   }
-  
-  /**
-   * @return string|null Result of the command/null when text contains no (defined) command
-   */
+
   public function parse(string $text): ?string {
     $commandName = $this->extractCommand($text);
     if($commandName === "") {
