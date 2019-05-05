@@ -32,18 +32,10 @@ final class ChatExtensionTest extends \Tester\TestCase {
     $config = [
       "chat" => [
         "chats" => [
-          "abc" => "abc",
+          "abc" => \Countable::class,
         ],
       ]
     ];
-    Assert::exception(function() use($config) {
-      $this->refreshContainer($config);
-    }, InvalidChatControlFactoryException::class);
-    $config["chat"]["chats"]["abc"] = \stdClass::class;
-    Assert::exception(function() use($config) {
-      $this->refreshContainer($config);
-    }, InvalidChatControlFactoryException::class);
-    $config["chat"]["chats"]["abc"] = \Countable::class;
     Assert::exception(function() use($config) {
       $this->refreshContainer($config);
     }, InvalidChatControlFactoryException::class);
@@ -54,16 +46,6 @@ final class ChatExtensionTest extends \Tester\TestCase {
   }
   
   public function testMessageProcessors() {
-    $config = [
-      "chat" => [
-        "messageProcessors" => [
-          "abc" => "abc"
-        ]
-      ]
-    ];
-    Assert::exception(function() use($config) {
-      $this->refreshContainer($config);
-    }, InvalidMessageProcessorException::class);
     $config["chat"]["messageProcessors"]["abc"] = \stdClass::class;
     Assert::exception(function() use($config) {
       $this->refreshContainer($config);
@@ -71,14 +53,6 @@ final class ChatExtensionTest extends \Tester\TestCase {
   }
   
   public function testDatabaseAdapter() {
-    $config = [
-      "chat" => [
-        "databaseAdapter" => "abc"
-      ]
-    ];
-    Assert::exception(function() use($config) {
-      $this->refreshContainer($config);
-    }, InvalidDatabaseAdapterException::class);
     $config["chat"]["databaseAdapter"] = \stdClass::class;
     Assert::exception(function() use($config) {
       $this->refreshContainer($config);

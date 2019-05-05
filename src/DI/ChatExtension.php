@@ -5,7 +5,6 @@ namespace HeroesofAbenez\Chat\DI;
 
 use HeroesofAbenez\Chat\ChatCommandsProcessor;
 use HeroesofAbenez\Chat\IChatCommand;
-use Nette\Utils\Validators;
 use HeroesofAbenez\Chat\ChatControl;
 use HeroesofAbenez\Chat\NewChatMessageFormFactory;
 use HeroesofAbenez\Chat\IChatMessageProcessor;
@@ -14,6 +13,9 @@ use Nette\DI\MissingServiceException;
 use HeroesofAbenez\Chat\InvalidChatControlFactoryException;
 use HeroesofAbenez\Chat\InvalidMessageProcessorException;
 use HeroesofAbenez\Chat\InvalidDatabaseAdapterException;
+use Nette\Schema\Expect;
+use Nette\DI\Definitions\FactoryDefinition;
+use Nette\DI\ServiceDefinition;
 
 /**
  * ChatExtension
@@ -30,28 +32,21 @@ final class ChatExtension extends \Nette\DI\CompilerExtension {
   /** @internal */
   public const TAG_CHAT = "chat.chat";
 
-  /** @var array */
-  protected $defaults = [
-    "chats" => [],
-    "messageProcessors" => [
-      self::SERVICE_CHAT_COMMANDS_PROCESSOR => ChatCommandsProcessor::class,
-    ],
-    "databaseAdapter" => "",
-    "characterProfileLink" => "",
-  ];
-  
+  public function getConfigSchema(): \Nette\Schema\Schema {
+    return Expect::structure([
+      "chats" => Expect::arrayOf("interface")->default([])->required(),
+      "messageProcessors" => Expect::arrayOf("class")->default([
+        self::SERVICE_CHAT_COMMANDS_PROCESSOR => ChatCommandsProcessor::class,
+        ]),
+      "databaseAdapter" => Expect::type("class")->required(),
+      "characterProfileLink" => Expect::string(""),
+    ]);
+  }
+
   /**
    * @throws InvalidChatControlFactoryException
    */
   protected function validateFactory(string $interface): void {
-    try {
-      $rc = new \ReflectionClass($interface);
-    } catch(\ReflectionException $e) {
-      throw new InvalidChatControlFactoryException("Interface $interface not found.", 0, $e);
-    }
-    if(!$rc->isInterface()) {
-      throw new InvalidChatControlFactoryException("$interface is not an interface.");
-    }
     try {
       $rm = new \ReflectionMethod($interface, "create");
     } catch(\ReflectionException $e) {
@@ -64,38 +59,33 @@ final class ChatExtension extends \Nette\DI\CompilerExtension {
   }
   
   /**
-   * @throws \Nette\Utils\AssertionException
    * @throws InvalidChatControlFactoryException
    */
   protected function getChats(): array {
     $chats = [];
-    $config = $this->getConfig($this->defaults);
-    Validators::assertField($config, "chats", "array");
-    foreach($config["chats"] as $name => $interface) {
+    /** @var \stdClass $config */
+    $config = $this->getConfig();
+    foreach($config->chats as $name => $interface) {
       $this->validateFactory($interface);
       $chats[$name] = $interface;
     }
     return $chats;
   }
-  
-  /**
-   * @throws \Nette\Utils\AssertionException
-   */
+
   protected function getCharacterProfileLink(): string {
-    $config = $this->getConfig($this->defaults);
-    Validators::assertField($config, "characterProfileLink", "string");
-    return $config["characterProfileLink"];
+    /** @var \stdClass $config */
+    $config = $this->getConfig();
+    return $config->characterProfileLink;
   }
   
   /**
-   * @throws \Nette\Utils\AssertionException
    * @throws InvalidMessageProcessorException
    */
   protected function getMessageProcessors(): array {
     $messageProcessors = [];
-    $config = $this->getConfig($this->defaults);
-    Validators::assertField($config, "messageProcessors", "array");
-    foreach($config["messageProcessors"] as $name => $processor) {
+    /** @var \stdClass $config */
+    $config = $this->getConfig();
+    foreach($config->messageProcessors as $name => $processor) {
       if(!class_exists($processor) OR !is_subclass_of($processor, IChatMessageProcessor::class)) {
         throw new InvalidMessageProcessorException("Invalid message processor $processor.");
       }
@@ -105,13 +95,12 @@ final class ChatExtension extends \Nette\DI\CompilerExtension {
   }
   
   /**
-   * @throws \Nette\Utils\AssertionException
    * @throws InvalidDatabaseAdapterException
    */
   protected function getDatabaseAdapter(): string {
-    $config = $this->getConfig($this->defaults);
-    Validators::assertField($config, "databaseAdapter", "string");
-    $adapter = $config["databaseAdapter"];
+    /** @var \stdClass $config */
+    $config = $this->getConfig();
+    $adapter = $config->databaseAdapter;
     if(!class_exists($adapter) OR !is_subclass_of($adapter, IDatabaseAdapter::class)) {
       throw new InvalidDatabaseAdapterException("Invalid database adapter $adapter.");
     }
@@ -119,7 +108,6 @@ final class ChatExtension extends \Nette\DI\CompilerExtension {
   }
   
   /**
-   * @throws \Nette\Utils\AssertionException
    * @throws InvalidChatControlFactoryException
    * @throws InvalidMessageProcessorException
    * @throws InvalidDatabaseAdapterException
@@ -129,11 +117,11 @@ final class ChatExtension extends \Nette\DI\CompilerExtension {
     $chats = $this->getChats();
     $characterProfileLink = $this->getCharacterProfileLink();
     foreach($chats as $name => $interface) {
-      $chat = $builder->addDefinition($this->prefix($name))
+      $chat = $builder->addFactoryDefinition($this->prefix($name))
         ->setImplement($interface)
         ->addTag(static::TAG_CHAT);
       if($characterProfileLink !== "") {
-        $chat->addSetup("setCharacterProfileLink", [$characterProfileLink]);
+        $chat->getResultDefinition()->addSetup("setCharacterProfileLink", [$characterProfileLink]);
       }
     }
     $messageProcessors = $this->getMessageProcessors();
@@ -153,10 +141,11 @@ final class ChatExtension extends \Nette\DI\CompilerExtension {
     $chats = $this->getChats();
     $messageProcessors = $this->getMessageProcessors();
     foreach($chats as $chat => $chatClass) {
+      /** @var FactoryDefinition $chatService */
       $chatService = $builder->getDefinition($this->prefix($chat));
       foreach($messageProcessors as $processor => $processorClass) {
         $processorService = $builder->getDefinition($this->prefix($processor));
-        $chatService->addSetup("addMessageProcessor", [$processorService]);
+        $chatService->getResultDefinition()->addSetup("addMessageProcessor", [$processorService]);
       }
     }
   }
@@ -164,6 +153,7 @@ final class ChatExtension extends \Nette\DI\CompilerExtension {
   protected function registerChatCommands(): void {
     $builder = $this->getContainerBuilder();
     try {
+      /** @var ServiceDefinition $processor */
       $processor = $builder->getDefinition($this->prefix(static::SERVICE_CHAT_COMMANDS_PROCESSOR));
     } catch(MissingServiceException $e) {
       return;

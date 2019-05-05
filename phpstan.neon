@@ -5,6 +5,5 @@ parameters:
     ignoreErrors:
         - '#Access to an undefined property Nette\\Localization\\ITranslator::\$lang#'
         - '#Method HeroesofAbenez\\Chat\\DI\\ChatExtension::getDatabaseAdapter\(\) should return string but returns HeroesofAbenez\\Chat\\IDatabaseAdapter#'
-        - '#Method Nette\\DI\\CompilerExtension::getConfig\(\) invoked with 1 parameter, 0 required#'
     universalObjectCratesClasses:
         - Nette\Bridges\ApplicationLatte\Template
