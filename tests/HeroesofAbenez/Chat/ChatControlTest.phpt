@@ -64,6 +64,7 @@ final class ChatControlTest extends \Tester\TestCase {
   
   public function testRender() {
     $this->control->lang = "en";
+    $this->control->characterProfileLink = "Profile:default";
     $this->checkRenderOutput($this->control, __DIR__ . "/chatExpected.latte");
   }
 }

@@ -5,6 +5,9 @@ namespace HeroesofAbenez\Chat\DI;
 
 require __DIR__ . "/../../../bootstrap.php";
 
+use HeroesofAbenez\Chat\ChatCommandsProcessor;
+use HeroesofAbenez\Chat\Test2Command;
+use HeroesofAbenez\Chat\TestCommand;
 use Tester\Assert;
 use HeroesofAbenez\Chat\InvalidChatControlFactoryException;
 use HeroesofAbenez\Chat\InvalidMessageProcessorException;
@@ -57,6 +60,23 @@ final class ChatExtensionTest extends \Tester\TestCase {
     Assert::exception(function() use($config) {
       $this->refreshContainer($config);
     }, InvalidDatabaseAdapterException::class);
+  }
+  
+  public function testChatCommands() {
+    $config = [
+      "services" => [
+        TestCommand::class, Test2Command::class,
+      ]
+    ];
+    $this->refreshContainer($config);
+    /** @var ChatCommandsProcessor $processor */
+    $processor = $this->getService(ChatCommandsProcessor::class);
+    /** @var TestCommand $command1 */
+    $command1 = $this->getService(TestCommand::class);
+    /** @var Test2Command $command2 */
+    $command2 = $this->getService(Test2Command::class);
+    Assert::true($processor->hasCommand($command1->getName()));
+    Assert::true($processor->hasCommand($command2->getName()));
   }
 }
 
