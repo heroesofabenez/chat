@@ -29,7 +29,7 @@ final class NewChatMessageFormFactory {
   public function create(ChatControl $chatControl): Form {
     $form = new Form();
     $form->setTranslator($this->translator);
-    $form->addText("message")
+    $form->addText("message", "")
       ->setRequired("chat.newMessageForm.messageField.empty");
     $form->addSubmit("send", "chat.newMessageForm.submitButton.label");
     $form->addComponent($chatControl, "chat");

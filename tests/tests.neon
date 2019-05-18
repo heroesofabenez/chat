@@ -1,5 +1,10 @@
 application:
     scanDirs: false
+    mapping:
+        *: HeroesofAbenez\Chat\*Presenter
+routing:
+    routes:
+        "<presenter>/<action>": "Chat:default"
 services:
     testbench.presenterMock: Testbench\Mocks\PresenterMock
 extensions:
