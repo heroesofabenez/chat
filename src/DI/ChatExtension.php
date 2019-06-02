@@ -15,7 +15,7 @@ use HeroesofAbenez\Chat\InvalidMessageProcessorException;
 use HeroesofAbenez\Chat\InvalidDatabaseAdapterException;
 use Nette\Schema\Expect;
 use Nette\DI\Definitions\FactoryDefinition;
-use Nette\DI\ServiceDefinition;
+use Nette\DI\Definitions\ServiceDefinition;
 
 /**
  * ChatExtension
