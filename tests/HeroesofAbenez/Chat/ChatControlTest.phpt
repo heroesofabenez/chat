@@ -26,7 +26,7 @@ final class ChatControlTest extends \Tester\TestCase {
   }
   
   public function testLang() {
-    $this->control->lang = "cs";
+    @$this->control->setLang("cs");
     Assert::same("cs", $this->control->lang);
   }
   
@@ -51,7 +51,7 @@ final class ChatControlTest extends \Tester\TestCase {
   public function testTranslator() {
     $loader = new NeonLoader();
     $loader->folders = [__DIR__ . "/../../../src/lang"];
-    $this->control->translator = new Translator($loader);
+    @$this->control->setTranslator(new Translator($loader));
     Assert::same("en", $this->control->translator->lang);
     $result = $this->control->translator->translate("chat.peopleInRoom");
     Assert::type("string", $result);
@@ -63,7 +63,7 @@ final class ChatControlTest extends \Tester\TestCase {
   }
   
   public function testRender() {
-    $this->control->lang = "en";
+    @$this->control->setLang("en");
     $this->control->characterProfileLink = "Profile:default";
     $this->checkRenderOutput($this->control, __DIR__ . "/chatExpected.latte");
   }
