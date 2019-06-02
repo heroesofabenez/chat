@@ -86,7 +86,7 @@ final class ChatExtension extends \Nette\DI\CompilerExtension {
     /** @var \stdClass $config */
     $config = $this->getConfig();
     foreach($config->messageProcessors as $name => $processor) {
-      if(!class_exists($processor) OR !is_subclass_of($processor, IChatMessageProcessor::class)) {
+      if(!is_subclass_of($processor, IChatMessageProcessor::class)) {
         throw new InvalidMessageProcessorException("Invalid message processor $processor.");
       }
       $messageProcessors[$name] = $processor;
@@ -102,7 +102,7 @@ final class ChatExtension extends \Nette\DI\CompilerExtension {
     $config = $this->getConfig();
     /** @var string $adapter */
     $adapter = $config->databaseAdapter;
-    if(!class_exists($adapter) OR !is_subclass_of($adapter, IDatabaseAdapter::class)) {
+    if(!is_subclass_of($adapter, IDatabaseAdapter::class)) {
       throw new InvalidDatabaseAdapterException("Invalid database adapter $adapter.");
     }
     return $adapter;
