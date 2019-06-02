@@ -3,16 +3,10 @@ declare(strict_types=1);
 
 namespace HeroesofAbenez\Chat;
 
-use Nette\Localization\ITranslator;
-use Nexendrie\Translation\Translator;
-use Nexendrie\Translation\Loaders\NeonLoader;
-
 /**
  * Basic Chat Control
  *
  * @author Jakub Konečný
- * @property ITranslator $translator
- * @property string $lang
  * @property int $messagesPerPage
  * @property string $characterProfileLink
  * @property-read \Nette\Bridges\ApplicationLatte\Template $template
@@ -20,10 +14,6 @@ use Nexendrie\Translation\Loaders\NeonLoader;
 abstract class ChatControl extends \Nette\Application\UI\Control {
   /** @var IDatabaseAdapter */
   protected $database;
-  /** @var ITranslator|Translator|null */
-  protected $translator;
-  /** @var string */
-  protected $lang = "";
   /** @var IChatMessageProcessor[] */
   protected $messageProcessors = [];
   /** @var string*/
@@ -44,48 +34,14 @@ abstract class ChatControl extends \Nette\Application\UI\Control {
   /**
    * @param mixed $characterValue
    */
-  public function __construct(IDatabaseAdapter $databaseAdapter, string $textColumn, int $textValue, string $characterColumn = null, $characterValue = null, ITranslator $translator = null) {
-    if(!is_null($translator)) {
-      trigger_error("Passing translator to constructor of" . self::class . " is deprecated.", E_USER_DEPRECATED);
-    }
+  public function __construct(IDatabaseAdapter $databaseAdapter, string $textColumn, int $textValue, string $characterColumn = null, $characterValue = null) {
     $this->database = $databaseAdapter;
-    $this->translator = $translator;
     $this->textColumn = $textColumn;
     $this->characterColumn = $characterColumn ?? $textColumn;
     $this->textValue = $textValue;
     $this->characterValue = $characterValue ?? $textValue;
   }
 
-  /**
-   * @deprecated
-   */
-  public function getTranslator(): ?ITranslator {
-    return $this->translator;
-  }
-
-  /**
-   * @deprecated
-   */
-  public function setTranslator(ITranslator $translator): void {
-    trigger_error(__METHOD__ . "() is deprecated.", E_USER_DEPRECATED);
-    $this->translator = $translator;
-  }
-
-  /**
-   * @deprecated
-   */
-  public function getLang(): string {
-    return $this->lang;
-  }
-
-  /**
-   * @deprecated
-   */
-  public function setLang(string $lang): void {
-    trigger_error(__METHOD__ . "() is deprecated.", E_USER_DEPRECATED);
-    $this->lang = $lang;
-  }
-  
   public function getMessagesPerPage(): int {
     return $this->messagesPerPage;
   }
@@ -124,25 +80,9 @@ abstract class ChatControl extends \Nette\Application\UI\Control {
   }
 
   /**
-   * @deprecated
-   */
-  protected function setupTranslator(): void {
-    if(is_null($this->translator)) {
-      $loader = new NeonLoader();
-      $loader->folders = [__DIR__ . "/lang"];
-      $this->translator = new Translator($loader);
-    }
-    if($this->lang !== "") {
-      $this->translator->lang = $this->lang;
-    }
-    $this->template->setTranslator($this->translator);
-  }
-  
-  /**
    * Renders the chat
    */
   public function render(): void {
-    $this->setupTranslator();
     $this->template->setFile($this->templateFile);
     $this->template->characters = $this->getCharacters();
     $this->template->texts = $this->getTexts();

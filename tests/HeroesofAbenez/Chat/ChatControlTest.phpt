@@ -5,7 +5,6 @@ namespace HeroesofAbenez\Chat;
 
 use Tester\Assert;
 use Nexendrie\Translation\Translator;
-use Nexendrie\Translation\Loaders\NeonLoader;
 
 require __DIR__ . "/../../bootstrap.php";
 
@@ -23,11 +22,6 @@ final class ChatControlTest extends \Tester\TestCase {
     }
     $this->control = $control;
     $this->attachToPresenter($this->control);
-  }
-  
-  public function testLang() {
-    @$this->control->setLang("cs");
-    Assert::same("cs", $this->control->lang);
   }
   
   public function testMessagesPerPage() {
@@ -49,21 +43,20 @@ final class ChatControlTest extends \Tester\TestCase {
   }
   
   public function testTranslator() {
-    $loader = new NeonLoader();
-    $loader->folders = [__DIR__ . "/../../../src/lang"];
-    @$this->control->setTranslator(new Translator($loader));
-    Assert::same("en", $this->control->translator->lang);
-    $result = $this->control->translator->translate("chat.peopleInRoom");
+    /** @var Translator $translator */
+    $translator = $this->getService(Translator::class);
+    Assert::same("en", $translator->lang);
+    $result = $translator->translate("chat.peopleInRoom");
     Assert::type("string", $result);
     Assert::same("People in this room:", $result);
-    $this->control->translator->lang = "cs";
-    $result = $this->control->translator->translate("chat.peopleInRoom");
+    $translator->lang = "cs";
+    $result = $translator->translate("chat.peopleInRoom");
     Assert::type("string", $result);
     Assert::same("Lidé v této místnosti:", $result);
+    $translator->lang = "en";
   }
   
   public function testRender() {
-    @$this->control->setLang("en");
     $this->control->characterProfileLink = "Profile:default";
     $this->checkRenderOutput($this->control, __DIR__ . "/chatExpected.latte");
   }

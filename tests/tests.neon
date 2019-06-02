@@ -9,7 +9,14 @@ services:
     testbench.presenterMock: Testbench\Mocks\PresenterMock
 extensions:
     chat: HeroesofAbenez\Chat\DI\ChatExtension
+    translation: Nexendrie\Translation\Bridges\NetteDI\TranslationExtension
 chat:
     databaseAdapter: HeroesofAbenez\Chat\FakeDatabaseAdapter
     chats:
         example: HeroesofAbenez\Chat\IExampleChatControlFactory
+translation:
+    default: en
+    localeResolver: manual
+    loader:
+        folders!:
+            - %appDir%/../src/lang

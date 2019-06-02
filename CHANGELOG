@@ -1,3 +1,6 @@
+Version 2.0.0-dev
+- BC break: ChatControl uses translator registered to Latte
+
 Version 1.2.0
 - deprecated translator and lang in ChatControl
 
