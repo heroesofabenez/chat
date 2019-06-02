@@ -100,6 +100,7 @@ final class ChatExtension extends \Nette\DI\CompilerExtension {
   protected function getDatabaseAdapter(): string {
     /** @var \stdClass $config */
     $config = $this->getConfig();
+    /** @var string $adapter */
     $adapter = $config->databaseAdapter;
     if(!class_exists($adapter) OR !is_subclass_of($adapter, IDatabaseAdapter::class)) {
       throw new InvalidDatabaseAdapterException("Invalid database adapter $adapter.");
