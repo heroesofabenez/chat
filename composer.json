@@ -29,7 +29,7 @@
     },
     "require-dev": {
         "nexendrie/code-quality": "dev-master",
-        "nexendrie/site-generator": "1.0.x-dev"
+        "nexendrie/site-generator": "^1.0"
     },
     "autoload": {
         "psr-4": {
@@ -46,7 +46,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.1.x-dev"
+            "dev-master": "1.2.x-dev"
         }
     },
     "minimum-stability": "dev",
