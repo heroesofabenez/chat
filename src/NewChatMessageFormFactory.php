@@ -5,8 +5,6 @@ namespace HeroesofAbenez\Chat;
 
 use Nette\Application\UI\Form;
 use Nette\Localization\ITranslator;
-use Nexendrie\Translation\Translator;
-use Nexendrie\Translation\Loaders\NeonLoader;
 
 /**
  * NewChatMessageFormFactory
@@ -17,12 +15,7 @@ final class NewChatMessageFormFactory {
   /** @var ITranslator */
   protected $translator;
   
-  public function __construct(?ITranslator $translator = null) {
-    if(is_null($translator)) {
-      $loader = new NeonLoader();
-      $loader->folders = [__DIR__ . "/lang"];
-      $translator = new Translator($loader);
-    }
+  public function __construct(ITranslator $translator) {
     $this->translator = $translator;
   }
   
