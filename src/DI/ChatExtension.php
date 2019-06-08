@@ -31,6 +31,8 @@ final class ChatExtension extends \Nette\DI\CompilerExtension {
   public const SERVICE_NEW_MESSAGE_FORM = "newMessageForm";
   /** @internal */
   public const TAG_CHAT = "chat.chat";
+  /** @var \stdClass */
+  protected $config;
 
   public function getConfigSchema(): \Nette\Schema\Schema {
     return Expect::structure([
@@ -63,19 +65,11 @@ final class ChatExtension extends \Nette\DI\CompilerExtension {
    */
   protected function getChats(): array {
     $chats = [];
-    /** @var \stdClass $config */
-    $config = $this->getConfig();
-    foreach($config->chats as $name => $interface) {
+    foreach($this->config->chats as $name => $interface) {
       $this->validateFactory($interface);
       $chats[$name] = $interface;
     }
     return $chats;
-  }
-
-  protected function getCharacterProfileLink(): string {
-    /** @var \stdClass $config */
-    $config = $this->getConfig();
-    return $config->characterProfileLink;
   }
   
   /**
@@ -83,9 +77,7 @@ final class ChatExtension extends \Nette\DI\CompilerExtension {
    */
   protected function getMessageProcessors(): array {
     $messageProcessors = [];
-    /** @var \stdClass $config */
-    $config = $this->getConfig();
-    foreach($config->messageProcessors as $name => $processor) {
+    foreach($this->config->messageProcessors as $name => $processor) {
       if(!is_subclass_of($processor, IChatMessageProcessor::class)) {
         throw new InvalidMessageProcessorException("Invalid message processor $processor.");
       }
@@ -98,10 +90,8 @@ final class ChatExtension extends \Nette\DI\CompilerExtension {
    * @throws InvalidDatabaseAdapterException
    */
   protected function getDatabaseAdapter(): string {
-    /** @var \stdClass $config */
-    $config = $this->getConfig();
     /** @var string $adapter */
-    $adapter = $config->databaseAdapter;
+    $adapter = $this->config->databaseAdapter;
     if(!is_subclass_of($adapter, IDatabaseAdapter::class)) {
       throw new InvalidDatabaseAdapterException("Invalid database adapter $adapter.");
     }
@@ -116,7 +106,8 @@ final class ChatExtension extends \Nette\DI\CompilerExtension {
   public function loadConfiguration(): void {
     $builder = $this->getContainerBuilder();
     $chats = $this->getChats();
-    $characterProfileLink = $this->getCharacterProfileLink();
+    /** @var string $characterProfileLink */
+    $characterProfileLink = $this->config->characterProfileLink;
     foreach($chats as $name => $interface) {
       $chat = $builder->addFactoryDefinition($this->prefix($name))
         ->setImplement($interface)
