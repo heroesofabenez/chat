@@ -31,6 +31,9 @@
         "nexendrie/site-generator": "^0.5",
         "nexendrie/translation": "^2.0.1"
     },
+    "suggest": {
+        "nexendrie/translation": "Translator"
+    },
     "autoload": {
         "psr-4": {
             "HeroesofAbenez\\Chat\\": "src/"
