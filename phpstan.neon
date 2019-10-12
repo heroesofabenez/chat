@@ -3,5 +3,6 @@ includes:
     - vendor/phpstan/phpstan-strict-rules/rules.neon
 parameters:
     ignoreErrors:
+        - '#Array \(array<callable\(Nette\\Forms\\Form, mixed\): void>\) does not accept Closure\(Nette\\Application\\UI\\Form, array\): mixed#'
     universalObjectCratesClasses:
         - Nette\Bridges\ApplicationLatte\Template
