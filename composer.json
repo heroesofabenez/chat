@@ -22,7 +22,7 @@
         "nette/application": "^3.0",
         "nette/di": "^3.0",
         "nette/forms": "^3.0.2",
-        "latte/latte": "^3.0",
+        "latte/latte": "^2.6 || ^3.0",
         "nette/utils": "^3.0",
         "nexendrie/utils": "^1.6.1"
     },
