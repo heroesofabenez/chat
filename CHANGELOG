@@ -1,3 +1,6 @@
+Version 2.0.1
+- re-added support for Latte 2.6
+
 Version 2.0.0
 - BC break: ChatControl uses translator registered to Latte
 - BC break: removed default value for $translator in NewChatMessageFormFactory constructor
