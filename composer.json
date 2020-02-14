@@ -18,7 +18,7 @@
         "issues": "https://gitlab.com/heroesofabenez/chat/issues"
     },
     "require": {
-        "php": ">=7.2.0",
+        "php": ">=7.3.0",
         "nette/application": "^3.0",
         "nette/di": "^3.0.2",
         "nette/forms": "^3.0.2",
