@@ -1,5 +1,5 @@
 Version 2.1.0-dev
-- raised minimal version of PHP to 7.3
+- raised minimal version of PHP to 7.4
 
 Version 2.0.1
 - re-added support for Latte 2.6
