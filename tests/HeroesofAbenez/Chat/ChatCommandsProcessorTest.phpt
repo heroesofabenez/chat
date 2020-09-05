@@ -20,7 +20,7 @@ final class ChatCommandsProcessorTest extends \Tester\TestCase {
   use \Testbench\TCompiledContainer;
   
   public function setUp() {
-    if(is_null($this->model)) {
+    if($this->model === null) {
       $this->model = $this->getService(ChatCommandsProcessor::class);
       $this->model->addCommand(new TestCommand());
     }

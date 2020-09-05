@@ -98,7 +98,7 @@ abstract class ChatControl extends \Nette\Application\UI\Control {
    */
   public function newMessage(string $message): void {
     $result = $this->processMessage($message);
-    if(!is_null($result)) {
+    if($result !== null) {
       $this->presenter->flashMessage($result);
     } else {
       $this->database->addMessage($message, $this->textColumn, $this->textValue);
