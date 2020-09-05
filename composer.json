@@ -24,7 +24,7 @@
         "nette/forms": "^3.0.2",
         "latte/latte": "^2.6 || ^3.0",
         "nette/utils": "^3.0",
-        "nexendrie/utils": "^1.7",
+        "nexendrie/utils": "^1.8",
         "symfony/polyfill-php80": "^1.18"
     },
     "require-dev": {
