@@ -7,6 +7,10 @@ use Tester\Assert;
 
 require __DIR__ . "/../../bootstrap.php";
 
+/**
+ * @author Jakub Konečný
+ * @testCase
+ */
 final class ChatCommandsProcessorTest extends \Tester\TestCase {
   const COMMAND_NAME = "test1";
   const TEXT = "/" . self::COMMAND_NAME;

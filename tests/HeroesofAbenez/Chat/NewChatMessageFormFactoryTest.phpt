@@ -5,6 +5,10 @@ namespace HeroesofAbenez\Chat;
 
 require __DIR__ . "/../../bootstrap.php";
 
+/**
+ * @author Jakub Konečný
+ * @testCase
+ */
 final class NewChatMessageFormFactoryTest extends \Tester\TestCase {
   use \Testbench\TPresenter;
 
