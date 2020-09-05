@@ -11,9 +11,8 @@ require __DIR__ . "/../../bootstrap.php";
 final class ChatControlTest extends \Tester\TestCase {
   use \Testbench\TComponent;
   use \Testbench\TCompiledContainer;
-  
-  /** @var ExampleChatControl */
-  protected $control;
+
+  protected ExampleChatControl $control;
   
   public function setUp() {
     static $control = null;

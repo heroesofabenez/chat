@@ -6,10 +6,10 @@ namespace HeroesofAbenez\Chat;
 use Nette\Application\UI\Form;
 
 final class ChatPresenter extends \Nette\Application\UI\Presenter {
-  /** @var IExampleChatControlFactory @inject */
-  public $chatFactory;
-  /** @var NewChatMessageFormFactory @inject */
-  public $newChatMessageFormFactory;
+  /** @inject */
+  public IExampleChatControlFactory $chatFactory;
+  /** @inject */
+  public NewChatMessageFormFactory $newChatMessageFormFactory;
 
   public function formatTemplateFiles(): array {
     return [__DIR__ . "/chat.latte"];

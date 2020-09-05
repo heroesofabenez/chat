@@ -14,15 +14,11 @@ namespace HeroesofAbenez\Chat;
  */
 class ChatMessage {
   use \Nette\SmartObject;
-  
-  /** @var int */
-  protected $id;
-  /** @var string */
-  protected $message;
-  /** @var string */
-  protected $when;
-  /** @var ChatCharacter */
-  protected $character;
+
+  protected int $id;
+  protected string $message;
+  protected string $when;
+  protected ChatCharacter $character;
   
   public function __construct(int $id, string $message, string $when, ChatCharacter $character) {
     $this->id = $id;

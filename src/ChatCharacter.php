@@ -16,7 +16,7 @@ class ChatCharacter {
   /** @var int|string */
   protected $id;
   /** @var string */
-  protected $name;
+  protected string $name;
   
   /**
    * @param int|string $id

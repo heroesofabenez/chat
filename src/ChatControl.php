@@ -12,24 +12,17 @@ namespace HeroesofAbenez\Chat;
  * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  */
 abstract class ChatControl extends \Nette\Application\UI\Control {
-  /** @var IDatabaseAdapter */
-  protected $database;
+  protected IDatabaseAdapter $database;
   /** @var IChatMessageProcessor[] */
-  protected $messageProcessors = [];
-  /** @var string*/
-  protected $textColumn;
-  /** @var string */
-  protected $characterColumn;
-  /** @var int*/
-  protected $textValue;
+  protected array $messageProcessors = [];
+  protected string $textColumn;
+  protected string $characterColumn;
+  protected int $textValue;
   /** @var int */
   protected $characterValue;
-  /** @var string */
-  protected $characterProfileLink = "";
-  /** @var string */
-  protected $templateFile = __DIR__ . "/chat.latte";
-  /** @var int */
-  protected $messagesPerPage = 25;
+  protected string $characterProfileLink = "";
+  protected string $templateFile = __DIR__ . "/chat.latte";
+  protected int $messagesPerPage = 25;
 
   /**
    * @param mixed $characterValue

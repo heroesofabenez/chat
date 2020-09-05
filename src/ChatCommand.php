@@ -11,9 +11,8 @@ namespace HeroesofAbenez\Chat;
  */
 abstract class ChatCommand implements IChatCommand {
   use \Nette\SmartObject;
-  
-  /** @var string */
-  protected $name = "";
+
+  protected string $name = "";
   
   /**
    * Defines default name for the chat command

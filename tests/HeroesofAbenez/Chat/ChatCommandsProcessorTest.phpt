@@ -10,9 +10,8 @@ require __DIR__ . "/../../bootstrap.php";
 final class ChatCommandsProcessorTest extends \Tester\TestCase {
   const COMMAND_NAME = "test1";
   const TEXT = "/" . self::COMMAND_NAME;
-  
-  /** @var ChatCommandsProcessor */
-  protected $model = null;
+
+  protected ?ChatCommandsProcessor $model = null;
   
   use \Testbench\TCompiledContainer;
   
