@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace HeroesofAbenez\Chat;
 
-use Nette\Utils\Strings;
-
 /**
  * ChatCommandsProcessor
  *
@@ -54,10 +52,10 @@ final class ChatCommandsProcessor implements IChatMessageProcessor {
    * Extract command from text
    */
   public function extractCommand(string $text): string {
-    if(!Strings::startsWith($text, "/")) {
+    if(!str_starts_with($text, "/")) {
       return "";
     }
-    if(!Strings::contains($text, " ")) {
+    if(!str_contains($text, " ")) {
       $command = substr($text, 1);
     } else {
       $parts = explode(" ", substr($text, 1));
@@ -74,7 +72,7 @@ final class ChatCommandsProcessor implements IChatMessageProcessor {
    * Extract parameters from text
    */
   public function extractParameters(string $text): array {
-    if(!Strings::startsWith($text, "/") OR !Strings::contains($text, " ")) {
+    if(!str_starts_with($text, "/") OR !str_contains($text, " ")) {
       return [];
     }
     $params = explode(" ", $text);
