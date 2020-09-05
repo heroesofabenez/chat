@@ -7,8 +7,8 @@ namespace HeroesofAbenez\Chat;
  * ChatCharacter
  *
  * @author Jakub Konečný
- * @property-read int|string $id
- * @property-read string $name
+ * @property int|string $id
+ * @property string $name
  */
 class ChatCharacter {
   use \Nette\SmartObject;
@@ -32,12 +32,23 @@ class ChatCharacter {
   public function getId() {
     return $this->id;
   }
+
+  /**
+   * @param int|string $id
+   */
+  protected function setId($id): void {
+    $this->id = $id;
+  }
   
   /**
    * @return string
    */
   public function getName(): string {
     return $this->name;
+  }
+
+  protected function setName(string $name): void {
+    $this->name = $name;
   }
 }
 ?>
