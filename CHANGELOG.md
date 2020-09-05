@@ -1,4 +1,4 @@
-Version 2.1.0-dev
+Version 2.1.0
 - raised minimal version of PHP to 7.4
 - used typed properties (possible BC break)
 - made properties of ChatCharacter and ChatMessage writable
