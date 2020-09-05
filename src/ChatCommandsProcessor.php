@@ -72,7 +72,7 @@ final class ChatCommandsProcessor implements IChatMessageProcessor {
    * Extract parameters from text
    */
   public function extractParameters(string $text): array {
-    if(!str_starts_with($text, "/") OR !str_contains($text, " ")) {
+    if(!str_starts_with($text, "/") || !str_contains($text, " ")) {
       return [];
     }
     $params = explode(" ", $text);
