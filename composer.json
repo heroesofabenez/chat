@@ -20,17 +20,17 @@
     "require": {
         "php": ">=7.4.0",
         "nette/application": "^3.0",
-        "nette/di": "^3.0.2",
-        "nette/forms": "^3.0.2",
+        "nette/di": "^3.0.5",
+        "nette/forms": "^3.0.6",
         "latte/latte": "^2.6 || ^3.0",
-        "nette/utils": "^3.0",
+        "nette/utils": "^3.1.3",
         "nexendrie/utils": "^1.8",
         "symfony/polyfill-php80": "^1.18"
     },
     "require-dev": {
         "nexendrie/code-quality": "dev-master",
         "nexendrie/site-generator": "^0.6",
-        "nexendrie/translation": "^2.2"
+        "nexendrie/translation": "^2.3"
     },
     "suggest": {
         "nexendrie/translation": "Translator"
