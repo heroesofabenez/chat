@@ -15,7 +15,6 @@ class ChatCharacter {
   
   /** @var int|string */
   protected $id;
-  /** @var string */
   protected string $name;
   
   /**
@@ -39,10 +38,7 @@ class ChatCharacter {
   protected function setId($id): void {
     $this->id = $id;
   }
-  
-  /**
-   * @return string
-   */
+
   public function getName(): string {
     return $this->name;
   }
