@@ -19,9 +19,9 @@
     },
     "require": {
         "php": ">=7.4.0",
-        "nette/application": "^3.0",
+        "nette/application": "^3.0.7",
         "nette/di": "^3.0.5",
-        "nette/forms": "^3.0.6",
+        "nette/forms": "^3.0.7",
         "latte/latte": "^2.6 || ^3.0",
         "nette/utils": "^3.1.3",
         "nexendrie/utils": "^1.8",
@@ -30,7 +30,7 @@
     "require-dev": {
         "nexendrie/code-quality": "dev-master",
         "nexendrie/site-generator": "^0.6",
-        "nexendrie/translation": "^2.3"
+        "nexendrie/translation": "^2.3.1"
     },
     "suggest": {
         "nexendrie/translation": "Translator"
