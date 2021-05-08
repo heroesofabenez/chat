@@ -3,7 +3,7 @@ includes:
     - vendor/phpstan/phpstan-strict-rules/rules.neon
 parameters:
     ignoreErrors:
-        - '#Array \(array<callable\(Nette\\Forms\\Form, mixed\): void>\) does not accept Closure\(Nette\\Application\\UI\\Form, array\): void#'
+        - '#Array \(array<callable\(Nette\\Forms\\Form, array\|object\): void>\) does not accept Closure\(Nette\\Application\\UI\\Form, array\): void#'
         - '#Call to an undefined method ReflectionType::getName\(\)#'
     universalObjectCratesClasses:
         - Nette\Bridges\ApplicationLatte\Template
