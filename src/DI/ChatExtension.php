@@ -21,6 +21,7 @@ use Nette\DI\Definitions\ServiceDefinition;
  * ChatExtension
  *
  * @author Jakub Konečný
+ * @property \stdClass $config
  */
 final class ChatExtension extends \Nette\DI\CompilerExtension {
   /** @internal */
@@ -31,8 +32,6 @@ final class ChatExtension extends \Nette\DI\CompilerExtension {
   public const SERVICE_NEW_MESSAGE_FORM = "newMessageForm";
   /** @internal */
   public const TAG_CHAT = "chat.chat";
-  /** @var \stdClass */
-  protected $config;
 
   public function getConfigSchema(): \Nette\Schema\Schema {
     return Expect::structure([
