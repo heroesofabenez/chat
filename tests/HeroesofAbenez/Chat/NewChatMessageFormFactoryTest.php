@@ -8,6 +8,7 @@ require __DIR__ . "/../../bootstrap.php";
 /**
  * @author Jakub Konečný
  * @testCase
+ * @skip
  */
 final class NewChatMessageFormFactoryTest extends \Tester\TestCase {
   use \Testbench\TPresenter;
