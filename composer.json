@@ -13,10 +13,6 @@
             "role": "Developer"
         }
     ],
-    "support": {
-        "source": "https://gitlab.com/heroesofabenez/chat/",
-        "issues": "https://gitlab.com/heroesofabenez/chat/issues"
-    },
     "require": {
         "php": ">=7.4.0",
         "nette/application": "^3.1.2",
