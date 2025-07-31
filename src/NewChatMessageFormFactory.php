@@ -25,6 +25,7 @@ final class NewChatMessageFormFactory {
       ->setRequired("chat.newMessageForm.messageField.empty");
     $form->addSubmit("send", "chat.newMessageForm.submitButton.label");
     $form->addComponent($chatControl, "chat");
+    // @phpstan-ignore assign.propertyType
     $form->onSuccess[] = function(Form $form, array $values): void {
       /** @var ChatControl $chat */
       $chat = $form->getComponent("chat");
