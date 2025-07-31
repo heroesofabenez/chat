@@ -12,7 +12,7 @@ final class ChatCommandsProcessor implements IChatMessageProcessor {
   use \Nette\SmartObject;
   
   /** @var IChatCommand[] */
-  protected array $commands = [];
+  private array $commands = [];
   
   /**
    * Add new command
