@@ -12,7 +12,7 @@ require __DIR__ . "/../../bootstrap.php";
 final class NewChatMessageFormFactoryTest extends \Tester\TestCase {
   use \Testbench\TPresenter;
 
-  public function testCreate() {
+  public function testCreate(): void {
     $this->checkAction("Chat:default");
   }
 }

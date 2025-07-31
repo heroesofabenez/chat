@@ -18,16 +18,18 @@ final class ChatControlTest extends \Tester\TestCase {
 
   protected ExampleChatControl $control;
   
-  public function setUp() {
+  public function setUp(): void {
     static $control = null;
     if($control === null) {
-      $control = $this->getService(IExampleChatControlFactory::class)->create();
+      /** @var IExampleChatControlFactory $factory */
+      $factory = $this->getService(IExampleChatControlFactory::class);
+      $control = $factory->create();
     }
     $this->control = $control;
     $this->attachToPresenter($this->control);
   }
   
-  public function testMessagesPerPage() {
+  public function testMessagesPerPage(): void {
     $originalValue = $this->control->messagesPerPage;
     Assert::type("int", $originalValue);
     $this->control->messagesPerPage = 1;
@@ -37,7 +39,7 @@ final class ChatControlTest extends \Tester\TestCase {
     $this->control->messagesPerPage = $originalValue;
   }
   
-  public function testCharacterProfileLink() {
+  public function testCharacterProfileLink(): void {
     $originalValue = $this->control->characterProfileLink;
     Assert::type("string", $originalValue);
     $this->control->characterProfileLink = "abc";
@@ -45,7 +47,7 @@ final class ChatControlTest extends \Tester\TestCase {
     $this->control->characterProfileLink = $originalValue;
   }
   
-  public function testTranslator() {
+  public function testTranslator(): void {
     /** @var Translator $translator */
     $translator = $this->getService(Translator::class);
     Assert::same("en", $translator->lang);
@@ -59,7 +61,7 @@ final class ChatControlTest extends \Tester\TestCase {
     $translator->lang = "en";
   }
   
-  public function testRender() {
+  public function testRender(): void {
     $this->control->characterProfileLink = "Profile:default";
     $this->checkRenderOutput($this->control, __DIR__ . "/chatExpected.latte");
   }
