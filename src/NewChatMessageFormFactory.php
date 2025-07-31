@@ -12,10 +12,7 @@ use Nette\Localization\ITranslator;
  * @author Jakub Konečný
  */
 final class NewChatMessageFormFactory {
-  private ITranslator $translator;
-  
-  public function __construct(ITranslator $translator) {
-    $this->translator = $translator;
+  public function __construct(private readonly ITranslator $translator) {
   }
   
   public function create(ChatControl $chatControl): Form {

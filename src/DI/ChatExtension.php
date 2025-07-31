@@ -146,7 +146,7 @@ final class ChatExtension extends \Nette\DI\CompilerExtension {
     try {
       /** @var ServiceDefinition $processor */
       $processor = $builder->getDefinition($this->prefix(self::SERVICE_CHAT_COMMANDS_PROCESSOR));
-    } catch(MissingServiceException $e) {
+    } catch(MissingServiceException ) {
       return;
     }
     $chatCommands = $builder->findByType(IChatCommand::class);

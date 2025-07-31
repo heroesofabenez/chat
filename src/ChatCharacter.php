@@ -15,14 +15,12 @@ class ChatCharacter {
   
   /** @var int|string */
   protected $id;
-  protected string $name;
   
   /**
    * @param int|string $id
    */
-  public function __construct($id, string $name) {
+  public function __construct($id, protected string $name) {
     $this->id = $id;
-    $this->name = $name;
   }
   
   /**

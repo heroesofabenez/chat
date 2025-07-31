@@ -14,17 +14,8 @@ namespace HeroesofAbenez\Chat;
  */
 class ChatMessage {
   use \Nette\SmartObject;
-
-  protected int $id;
-  protected string $message;
-  protected string $when;
-  protected ChatCharacter $character;
   
-  public function __construct(int $id, string $message, string $when, ChatCharacter $character) {
-    $this->id = $id;
-    $this->message = $message;
-    $this->when = $when;
-    $this->character = $character;
+  public function __construct(protected int $id, protected string $message, protected string $when, protected ChatCharacter $character) {
   }
 
   public function getId(): int {
