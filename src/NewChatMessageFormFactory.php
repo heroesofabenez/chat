@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace HeroesofAbenez\Chat;
 
 use Nette\Application\UI\Form;
-use Nette\Localization\ITranslator;
+use Nette\Localization\Translator;
 
 /**
  * NewChatMessageFormFactory
@@ -12,7 +12,7 @@ use Nette\Localization\ITranslator;
  * @author Jakub Konečný
  */
 final class NewChatMessageFormFactory {
-  public function __construct(private readonly ITranslator $translator) {
+  public function __construct(private readonly Translator $translator) {
   }
   
   public function create(ChatControl $chatControl): Form {
