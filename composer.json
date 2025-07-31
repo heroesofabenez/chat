@@ -25,7 +25,8 @@
     "require-dev": {
         "nexendrie/code-quality": "dev-master",
         "nexendrie/site-generator": "^0.7",
-        "nexendrie/translation": "^2.3.1"
+        "nexendrie/translation": "^2.3.1",
+        "latte/latte": "^2.6"
     },
     "suggest": {
         "nexendrie/translation": "Translator"
