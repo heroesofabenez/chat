@@ -8,7 +8,6 @@ namespace HeroesofAbenez\Chat;
  *
  * @author Jakub Konečný
  * @property int $messagesPerPage
- * @property string $characterProfileLink
  * @property-read \Nette\Bridges\ApplicationLatte\Template $template
  */
 abstract class ChatControl extends \Nette\Application\UI\Control {
@@ -17,7 +16,7 @@ abstract class ChatControl extends \Nette\Application\UI\Control {
   protected string $characterColumn;
   /** @var int */
   protected $characterValue;
-  protected string $characterProfileLink = "";
+  public string $characterProfileLink = "";
   protected string $templateFile = __DIR__ . "/chat.latte";
   protected int $messagesPerPage = 25;
 
@@ -26,21 +25,33 @@ abstract class ChatControl extends \Nette\Application\UI\Control {
     $this->characterValue = $characterValue ?? $textValue;
   }
 
+  /**
+   * @deprecated Access the property directly
+   */
   public function getMessagesPerPage(): int {
     return $this->messagesPerPage;
   }
-  
+
+  /**
+   * @deprecated Access the property directly
+   */
   public function setMessagesPerPage(int $messagesPerPage): void {
     if($messagesPerPage < 0) {
       $messagesPerPage = 0;
     }
     $this->messagesPerPage = $messagesPerPage;
   }
-  
+
+  /**
+   * @deprecated Access the property directly
+   */
   public function getCharacterProfileLink(): string {
     return $this->characterProfileLink;
   }
-  
+
+  /**
+   * @deprecated Access the property directly
+   */
   public function setCharacterProfileLink(string $characterProfileLink): void {
     $this->characterProfileLink = $characterProfileLink;
   }

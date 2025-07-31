@@ -1,5 +1,6 @@
 Version 2.2.0-dev
 - raised minimal version of PHP to 8.1
+- deprecated most getters and setters
 
 Version 2.1.0
 - raised minimal version of PHP to 7.4
