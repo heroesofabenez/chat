@@ -1,4 +1,4 @@
-Version 2.2.0-dev
+Version 2.2.0
 - raised minimal version of PHP to 8.1
 - deprecated most getters and setters
 - deprecated IChatMessageProcessor in favor of ChatMessageProcessor, IDatabaseAdapter in favor of DatabaseAdapter and ChatCommand in favor of BaseChatCommand
