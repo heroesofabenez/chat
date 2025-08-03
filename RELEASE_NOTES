@@ -1,0 +1,7 @@
+A new version of Chat is out. It requires PHP 8.1 and uses some of its new features.
+
+Most getters and setters are deprecated, we hope to remove them all in the next major version (but that might require PHP 8.4).
+
+It starts the process of removing prefix I from interfaces' names. All interfaces except IChatCommand now has a version without the prefix I, there is also new class BaseChatCommand which which will eventually replace class ChatCommand. The old names will be removed in the next major version and interface IChatCommand will be renamed to ChatCommand.
+
+For complete list of changes since previous version, see CHANGELOG.md.
