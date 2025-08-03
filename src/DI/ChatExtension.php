@@ -7,8 +7,8 @@ use HeroesofAbenez\Chat\ChatCommandsProcessor;
 use HeroesofAbenez\Chat\IChatCommand;
 use HeroesofAbenez\Chat\ChatControl;
 use HeroesofAbenez\Chat\NewChatMessageFormFactory;
-use HeroesofAbenez\Chat\IChatMessageProcessor;
-use HeroesofAbenez\Chat\IDatabaseAdapter;
+use HeroesofAbenez\Chat\ChatMessageProcessor;
+use HeroesofAbenez\Chat\DatabaseAdapter;
 use Nette\DI\MissingServiceException;
 use HeroesofAbenez\Chat\InvalidChatControlFactoryException;
 use HeroesofAbenez\Chat\InvalidMessageProcessorException;
@@ -76,7 +76,7 @@ final class ChatExtension extends \Nette\DI\CompilerExtension {
   private function getMessageProcessors(): array {
     $messageProcessors = [];
     foreach($this->config->messageProcessors as $name => $processor) {
-      if(!is_subclass_of($processor, IChatMessageProcessor::class)) {
+      if(!is_subclass_of($processor, ChatMessageProcessor::class)) {
         throw new InvalidMessageProcessorException("Invalid message processor $processor.");
       }
       $messageProcessors[$name] = $processor;
@@ -89,7 +89,7 @@ final class ChatExtension extends \Nette\DI\CompilerExtension {
    */
   private function getDatabaseAdapter(): string {
     $adapter = $this->config->databaseAdapter;
-    if(!is_subclass_of($adapter, IDatabaseAdapter::class)) {
+    if(!is_subclass_of($adapter, DatabaseAdapter::class)) {
       throw new InvalidDatabaseAdapterException("Invalid database adapter $adapter.");
     }
     return $adapter;

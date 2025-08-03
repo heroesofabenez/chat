@@ -9,7 +9,7 @@ namespace HeroesofAbenez\Chat;
  * @author Jakub Konečný
  */
 final class ExampleChatControl extends ChatControl {
-  public function __construct(IDatabaseAdapter $databaseAdapter) {
+  public function __construct(DatabaseAdapter $databaseAdapter) {
     parent::__construct($databaseAdapter, "example", 1);
   }
 }

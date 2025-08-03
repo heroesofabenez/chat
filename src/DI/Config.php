@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace HeroesofAbenez\Chat\DI;
 
-use HeroesofAbenez\Chat\IChatMessageProcessor;
-use HeroesofAbenez\Chat\IDatabaseAdapter;
+use HeroesofAbenez\Chat\ChatMessageProcessor;
+use HeroesofAbenez\Chat\DatabaseAdapter;
 
 /**
  * @author Jakub Konečný
@@ -17,12 +17,12 @@ final class Config {
   public array $chats = [];
 
   /**
-   * @var class-string<IChatMessageProcessor>[]
+   * @var class-string<ChatMessageProcessor>[]
    */
   public array $messageProcessors = [];
 
   /**
-   * @var class-string<IDatabaseAdapter>
+   * @var class-string<DatabaseAdapter>
    */
   public string $databaseAdapter;
 

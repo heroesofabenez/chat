@@ -3,6 +3,10 @@ includes:
     - vendor/phpstan/phpstan-strict-rules/rules.neon
     - vendor/phpstan/phpstan-deprecation-rules/rules.neon
 parameters:
+    excludePaths:
+        - %rootDir%/../../../src/ChatCommand.php
+        - %rootDir%/../../../src/IDatabaseAdapter.php
+        - %rootDir%/../../../src/IChatMessageProcessor.php
     ignoreErrors:
         - '#Call to an undefined method ReflectionType::getName\(\)#'
     universalObjectCratesClasses:

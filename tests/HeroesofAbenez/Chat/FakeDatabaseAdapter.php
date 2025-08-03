@@ -8,7 +8,7 @@ namespace HeroesofAbenez\Chat;
  *
  * @author Jakub Konečný
  */
-final class FakeDatabaseAdapter implements IDatabaseAdapter {
+final class FakeDatabaseAdapter implements DatabaseAdapter {
   protected function getFakeCharacter(): ChatCharacter {
     return new ChatCharacter(1, "fake");
   }

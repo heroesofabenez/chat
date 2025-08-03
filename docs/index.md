@@ -35,10 +35,10 @@ declare(strict_types=1);
 namespace App\Chat;
 
 use HeroesofAbenez\Chat\ChatControl;
-use HeroesofAbenez\Chat\IDatabaseAdapter;
+use HeroesofAbenez\Chat\DatabaseAdapter;
 
 class GroupChatControl extends ChatControl {
-  public function __construct(IDatabaseAdapter $databaseAdapter, \Nette\Security\User $user) {
+  public function __construct(DatabaseAdapter $databaseAdapter, \Nette\Security\User $user) {
     $groupId = $user->identity->group;
     parent::__construct($databaseAdapter, "group", $groupId);
   }
@@ -68,7 +68,7 @@ namespace App\Chat;
 
 use App\Orm\Model as ORM;
 use App\Orm\ChatMessage as ChatMessageEntity;
-use HeroesofAbenez\Chat\IDatabaseAdapter;
+use HeroesofAbenez\Chat\DatabaseAdapter;
 use HeroesofAbenez\Chat\ChatMessagesCollection;
 use HeroesofAbenez\Chat\ChatMessage;
 use HeroesofAbenez\Chat\ChatCharactersCollection;
@@ -79,7 +79,7 @@ use HeroesofAbenez\Chat\ChatCharacter;
  *
  * @author Jakub Konečný
  */
-final class NextrasOrmAdapter implements IDatabaseAdapter {
+final class NextrasOrmAdapter implements DatabaseAdapter {
   /** @var ORM */
   protected $orm;
   /** @var \Nette\Security\User */

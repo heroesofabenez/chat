@@ -8,7 +8,7 @@ namespace HeroesofAbenez\Chat;
  *
  * @author Jakub Konečný
  */
-final class ChatCommandsProcessor implements IChatMessageProcessor {
+final class ChatCommandsProcessor implements ChatMessageProcessor {
   /** @var IChatCommand[] */
   private array $commands = [];
   

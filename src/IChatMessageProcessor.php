@@ -3,15 +3,11 @@ declare(strict_types=1);
 
 namespace HeroesofAbenez\Chat;
 
-/**
- * IChatMessageProcessor
- *
- * @author Jakub Konečný
- */
-interface IChatMessageProcessor {
-  /**
-   * @return null|string The result/null if the processor is not applicable
-   */
-  public function parse(string $message): ?string;
+if(false) {
+  /** @deprecated use ChatMessageProcessor */
+  interface IChatMessageProcessor extends ChatMessageProcessor {
+  }
+} else {
+  class_alias(ChatMessageProcessor::class, IChatMessageProcessor::class);
 }
 ?>
