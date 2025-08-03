@@ -21,7 +21,7 @@ use Nette\DI\Definitions\ServiceDefinition;
  * ChatExtension
  *
  * @author Jakub Konečný
- * @property \stdClass $config
+ * @property Config $config
  */
 final class ChatExtension extends \Nette\DI\CompilerExtension {
   /** @internal */
@@ -34,13 +34,12 @@ final class ChatExtension extends \Nette\DI\CompilerExtension {
   public const TAG_CHAT = "chat.chat";
 
   public function getConfigSchema(): \Nette\Schema\Schema {
-    return Expect::structure([
+    return Expect::from(new Config(), [
       "chats" => Expect::arrayOf("interface")->default([])->required(),
       "messageProcessors" => Expect::arrayOf("class")->default([
         self::SERVICE_CHAT_COMMANDS_PROCESSOR => ChatCommandsProcessor::class,
-        ]),
+      ]),
       "databaseAdapter" => Expect::type("class")->required(),
-      "characterProfileLink" => Expect::string(""),
     ]);
   }
 
@@ -89,7 +88,6 @@ final class ChatExtension extends \Nette\DI\CompilerExtension {
    * @throws InvalidDatabaseAdapterException
    */
   private function getDatabaseAdapter(): string {
-    /** @var string $adapter */
     $adapter = $this->config->databaseAdapter;
     if(!is_subclass_of($adapter, IDatabaseAdapter::class)) {
       throw new InvalidDatabaseAdapterException("Invalid database adapter $adapter.");
@@ -105,7 +103,6 @@ final class ChatExtension extends \Nette\DI\CompilerExtension {
   public function loadConfiguration(): void {
     $builder = $this->getContainerBuilder();
     $chats = $this->getChats();
-    /** @var string $characterProfileLink */
     $characterProfileLink = $this->config->characterProfileLink;
     foreach($chats as $name => $interface) {
       $chat = $builder->addFactoryDefinition($this->prefix($name))
