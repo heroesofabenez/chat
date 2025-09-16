@@ -8,10 +8,10 @@ namespace HeroesofAbenez\Chat;
  *
  * @author Jakub Konečný
  */
-interface ChatMessageProcessor {
-  /**
-   * @return null|string The result/null if the processor is not applicable
-   */
-  public function parse(string $message): ?string;
+interface ChatMessageProcessor
+{
+    /**
+     * @return null|string The result/null if the processor is not applicable
+     */
+    public function parse(string $message): ?string;
 }
-?>

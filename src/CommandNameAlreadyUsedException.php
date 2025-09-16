@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace HeroesofAbenez\Chat;
 
-class CommandNameAlreadyUsedException extends \RuntimeException {
-
+class CommandNameAlreadyUsedException extends \RuntimeException
+{
 }
-?>

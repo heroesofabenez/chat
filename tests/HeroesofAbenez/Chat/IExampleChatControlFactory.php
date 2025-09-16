@@ -8,7 +8,7 @@ namespace HeroesofAbenez\Chat;
  *
  * @author Jakub Konečný
  */
-interface IExampleChatControlFactory {
-  public function create(): ExampleChatControl;
+interface IExampleChatControlFactory
+{
+    public function create(): ExampleChatControl;
 }
-?>

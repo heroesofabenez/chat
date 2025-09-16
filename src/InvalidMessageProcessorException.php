@@ -8,7 +8,6 @@ namespace HeroesofAbenez\Chat;
  *
  * @author Jakub Konečný
  */
-class InvalidMessageProcessorException extends \RuntimeException {
-
+class InvalidMessageProcessorException extends \RuntimeException
+{
 }
-?>

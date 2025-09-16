@@ -8,7 +8,6 @@ namespace HeroesofAbenez\Chat;
  *
  * @author Jakub Konečný
  */
-class InvalidChatControlFactoryException extends \RuntimeException {
-  
+class InvalidChatControlFactoryException extends \RuntimeException
+{
 }
-?>

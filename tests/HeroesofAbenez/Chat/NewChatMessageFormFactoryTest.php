@@ -10,14 +10,15 @@ require __DIR__ . "/../../bootstrap.php";
  * @testCase
  * @skip
  */
-final class NewChatMessageFormFactoryTest extends \Tester\TestCase {
-  use \Testbench\TPresenter;
+final class NewChatMessageFormFactoryTest extends \Tester\TestCase
+{
+    use \Testbench\TPresenter;
 
-  public function testCreate(): void {
-    $this->checkAction("Chat:default");
-  }
+    public function testCreate(): void
+    {
+        $this->checkAction("Chat:default");
+    }
 }
 
 $test = new NewChatMessageFormFactoryTest();
 $test->run();
-?>

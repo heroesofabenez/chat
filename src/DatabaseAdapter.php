@@ -8,15 +8,17 @@ namespace HeroesofAbenez\Chat;
  *
  * @author Jakub Konečný
  */
-interface DatabaseAdapter {
-  /**
-   * @param mixed $value
-   */
-  public function getTexts(string $column, $value, int $limit): ChatMessagesCollection;
-  /**
-   * @param mixed $value
-   */
-  public function getCharacters(string $column, $value): ChatCharactersCollection;
-  public function addMessage(string $message, string $filterColumn, int $filterValue): void;
+interface DatabaseAdapter
+{
+    /**
+     * @param mixed $value
+     */
+    public function getTexts(string $column, $value, int $limit): ChatMessagesCollection;
+
+    /**
+     * @param mixed $value
+     */
+    public function getCharacters(string $column, $value): ChatCharactersCollection;
+
+    public function addMessage(string $message, string $filterColumn, int $filterValue): void;
 }
-?>

@@ -8,7 +8,6 @@ namespace HeroesofAbenez\Chat;
  *
  * @author Jakub Konečný
  */
-class InvalidDatabaseAdapterException extends \RuntimeException {
-  
+class InvalidDatabaseAdapterException extends \RuntimeException
+{
 }
-?>

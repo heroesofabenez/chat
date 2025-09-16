@@ -8,7 +8,7 @@ namespace HeroesofAbenez\Chat\DI;
  *
  * @author Jakub Konečný
  */
-interface IFakeFactory {
-  public function create(): \stdClass;
+interface IFakeFactory
+{
+    public function create(): \stdClass;
 }
-?>

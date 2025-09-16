@@ -10,22 +10,22 @@ use HeroesofAbenez\Chat\DatabaseAdapter;
  * @author Jakub Konečný
  * @internal
  */
-final class Config {
-  /**
-   * @var class-string[]
-   */
-  public array $chats = [];
+final class Config
+{
+    /**
+     * @var class-string[]
+     */
+    public array $chats = [];
 
-  /**
-   * @var class-string<ChatMessageProcessor>[]
-   */
-  public array $messageProcessors = [];
+    /**
+     * @var class-string<ChatMessageProcessor>[]
+     */
+    public array $messageProcessors = [];
 
-  /**
-   * @var class-string<DatabaseAdapter>
-   */
-  public string $databaseAdapter;
+    /**
+     * @var class-string<DatabaseAdapter>
+     */
+    public string $databaseAdapter;
 
-  public string $characterProfileLink = "";
+    public string $characterProfileLink = "";
 }
-?>

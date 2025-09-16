@@ -8,9 +8,9 @@ namespace HeroesofAbenez\Chat;
  *
  * @author Jakub Konečný
  */
-interface IChatCommand {
-  public function getName(): string;
-  public function setName(string $name): void;
-  public function execute(): string;
+interface IChatCommand
+{
+    public function getName(): string;
+    public function setName(string $name): void;
+    public function execute(): string;
 }
-?>

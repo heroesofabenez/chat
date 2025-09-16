@@ -11,24 +11,26 @@ use Nette\Localization\Translator;
  *
  * @author Jakub Konečný
  */
-final class NewChatMessageFormFactory {
-  public function __construct(private readonly Translator $translator) {
-  }
-  
-  public function create(ChatControl $chatControl): Form {
-    $form = new Form();
-    $form->setTranslator($this->translator);
-    $form->addText("message", "")
-      ->setRequired("chat.newMessageForm.messageField.empty");
-    $form->addSubmit("send", "chat.newMessageForm.submitButton.label");
-    $form->addComponent($chatControl, "chat");
-    // @phpstan-ignore assign.propertyType
-    $form->onSuccess[] = function(Form $form, array $values): void {
-      /** @var ChatControl $chat */
-      $chat = $form->getComponent("chat");
-      $chat->newMessage($values["message"]);
-    };
-    return $form;
-  }
+final class NewChatMessageFormFactory
+{
+    public function __construct(private readonly Translator $translator)
+    {
+    }
+
+    public function create(ChatControl $chatControl): Form
+    {
+        $form = new Form();
+        $form->setTranslator($this->translator);
+        $form->addText("message", "")
+            ->setRequired("chat.newMessageForm.messageField.empty");
+        $form->addSubmit("send", "chat.newMessageForm.submitButton.label");
+        $form->addComponent($chatControl, "chat");
+        // @phpstan-ignore assign.propertyType
+        $form->onSuccess[] = function (Form $form, array $values): void {
+            /** @var ChatControl $chat */
+            $chat = $form->getComponent("chat");
+            $chat->newMessage($values["message"]);
+        };
+        return $form;
+    }
 }
-?>

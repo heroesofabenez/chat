@@ -8,7 +8,7 @@ namespace HeroesofAbenez\Chat;
  *
  * @author Jakub Konečný
  */
-final class ChatCharactersCollection extends \Nexendrie\Utils\Collection {
-  protected string $class = ChatCharacter::class;
+final class ChatCharactersCollection extends \Nexendrie\Utils\Collection
+{
+    protected string $class = ChatCharacter::class;
 }
-?>
