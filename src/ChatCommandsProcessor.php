@@ -111,14 +111,14 @@ final class ChatCommandsProcessor implements ChatMessageProcessor
         throw new CommandNotFoundException("Command $name is not defined.");
     }
 
-    public function parse(string $text): ?string
+    public function parse(string $message): ?string
     {
-        $commandName = $this->extractCommand($text);
+        $commandName = $this->extractCommand($message);
         if ($commandName === "") {
             return null;
         }
         $command = $this->getCommand($commandName);
-        $params = $this->extractParameters($text);
+        $params = $this->extractParameters($message);
         return call_user_func_array([$command, "execute"], $params);
     }
 }
