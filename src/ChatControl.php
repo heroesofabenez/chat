@@ -21,8 +21,13 @@ abstract class ChatControl extends \Nette\Application\UI\Control
     protected string $templateFile = __DIR__ . "/chat.latte";
     protected int $messagesPerPage = 25;
 
-    public function __construct(protected DatabaseAdapter $database, protected string $textColumn, protected int $textValue, string $characterColumn = null, mixed $characterValue = null)
-    {
+    public function __construct(
+        protected DatabaseAdapter $database,
+        protected string $textColumn,
+        protected int $textValue,
+        string $characterColumn = null,
+        mixed $characterValue = null
+    ) {
         $this->characterColumn = $characterColumn ?? $textColumn;
         $this->characterValue = $characterValue ?? $textValue;
     }

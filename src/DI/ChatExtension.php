@@ -57,7 +57,9 @@ final class ChatExtension extends \Nette\DI\CompilerExtension
         }
         $returnType = $rm->getReturnType();
         if ($returnType === null || !is_subclass_of($returnType->getName(), ChatControl::class)) {
-            throw new InvalidChatControlFactoryException("Return type of $interface::create() is not a subtype of " . ChatControl::class . ".");
+            throw new InvalidChatControlFactoryException(
+                "Return type of $interface::create() is not a subtype of " . ChatControl::class . "."
+            );
         }
     }
 

@@ -12,8 +12,12 @@ class ChatMessage
 {
     use \Nette\SmartObject;
 
-    public function __construct(public int $id, public string $message, public string $when, public ChatCharacter $character)
-    {
+    public function __construct(
+        public int $id,
+        public string $message,
+        public string $when,
+        public ChatCharacter $character
+    ) {
     }
 
     /**
