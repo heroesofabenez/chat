@@ -10,10 +10,6 @@ final class Test2Command extends BaseChatCommand
     public function execute(): string
     {
         $args = func_get_args();
-        $text = "test";
-        foreach ($args as $arg) {
-            $text .= $arg;
-        }
-        return $text;
+        return "test" . implode("", $args);
     }
 }
