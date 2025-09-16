@@ -35,18 +35,10 @@ final class ChatCommandsProcessor implements ChatMessageProcessor
      */
     public function addAlias(string $oldName, string $newName): void
     {
-        try {
-            $command = $this->getCommand($oldName);
-        } catch (CommandNotFoundException $e) {
-            throw $e;
-        }
+        $command = $this->getCommand($oldName);
         $new = clone $command;
         $new->setName($newName);
-        try {
-            $this->addCommand($new);
-        } catch (CommandNameAlreadyUsedException $e) {
-            throw $e;
-        }
+        $this->addCommand($new);
     }
 
     /**
