@@ -24,9 +24,8 @@
     },
     "require-dev": {
         "nexendrie/code-quality": "dev-master",
-        "phpstan/phpstan-deprecation-rules": "^2.0",
-        "nexendrie/site-generator": "^0.8",
-        "nexendrie/translation": "^2.3.1",
+        "nexendrie/site-generator": "^0.9",
+        "nexendrie/translation": "^2.4",
         "latte/latte": "^2.6"
     },
     "suggest": {
