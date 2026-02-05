@@ -7,7 +7,7 @@ Links
 -----
 
 Primary repository: https://gitlab.com/heroesofabenez/chat
-Github repository: https://github.com/heroesofabenez/chat
+GitHub repository: https://github.com/heroesofabenez/chat
 Packagist: https://packagist.org/packages/heroesofabenez/chat
 
 Installation
@@ -19,14 +19,14 @@ Overview
 
 This package helps you with creating chats for your Nette application. It contains abstract component with basic template, data structures for message and person and DI extension which with minimal configuration registers and configure all the services for you. You just need to write some database logic.
 
-The default template and form for creating message have a few texts that need to translated so you need to have a translator registered in Nette DI container and Latte. We recommend package **nexendrie/translation**. This package though contains English and Czech translation in neon format. They can be found in folder *src/lang*. By default this component do not use messages in default language but message ids in form chat.*string*.
+The default template and form for creating message have a few texts that need to translated so you need to have a translator registered in Nette DI container and Latte. We recommend package **nexendrie/translation**. This package though contains English and Czech translation in neon format. They can be found in folder *src/lang*. By default, this component do not use messages in default language but message ids in form chat.*string*.
 
 Usage
 -----
 
 ### Chat controls and factories
 
-Firstly, you need to create a component (and factory for it) for every chat you want in application. Do not worry, you will not end up with zillion classes for every possible room because this package works with types of chat. E. g. you can have some global chat for everyone and group chat for a group of users. In this situation you will define only 2 types of chat (group of user will probably be saved as a field in table of users). So for the group chat you will need this:
+Firstly, you need to create a component (and factory for it) for every chat you want in application. Do not worry, you will not end up with zillion classes for every possible room because this package works with types of chat. E.g. you can have some global chat for everyone and group chat for a group of users. In this situation you will define only 2 types of chat (group of user will probably be saved as a field in table of users). So for the group chat you will need this:
 
 ```php
 <?php
@@ -205,7 +205,7 @@ Alternatively, you can set property **characterProfileLink** in the chat control
 
 ### Chat message processors
 
-Before a new message is saved to database, you are able to examine it and decide that it should not be saved and other some other action should be done. E. g. if it contains some forbidden words, you show a warning to the user and don't save their message.
+Before a new message is saved to database, you are able to examine it and decide that it should not be saved and other some other action should be done. E.g. if it contains some forbidden words, you show a warning to the user and don't save their message.
 
 This can be done via a chat message processor. The processor has to implement **HeroesofAbenez\Chat\IChatMessageProcessor** interface. It contains just 1 method **parse** which takes the message as parameter and return a string which will be shown to the user or null if the processor is not applicable.
 
