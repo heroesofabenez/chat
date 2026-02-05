@@ -16,6 +16,7 @@ use HeroesofAbenez\Chat\InvalidDatabaseAdapterException;
 use Nette\Schema\Expect;
 use Nette\DI\Definitions\FactoryDefinition;
 use Nette\DI\Definitions\ServiceDefinition;
+use ReflectionNamedType;
 
 /**
  * ChatExtension
@@ -55,6 +56,7 @@ final class ChatExtension extends \Nette\DI\CompilerExtension
         } catch (\ReflectionException $e) {
             throw new InvalidChatControlFactoryException("Interface $interface does not contain method create.", 0, $e);
         }
+        /** @var ReflectionNamedType $returnType */
         $returnType = $rm->getReturnType();
         if ($returnType === null || !is_subclass_of($returnType->getName(), ChatControl::class)) {
             throw new InvalidChatControlFactoryException(
