@@ -13,7 +13,7 @@ extensions:
 chat:
     databaseAdapter: HeroesofAbenez\Chat\FakeDatabaseAdapter
     chats:
-        example: HeroesofAbenez\Chat\IExampleChatControlFactory
+        example: HeroesofAbenez\Chat\ExampleChatControlFactory
 translation:
     default: en
     localeResolver: manual

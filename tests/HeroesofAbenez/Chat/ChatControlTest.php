@@ -23,8 +23,8 @@ final class ChatControlTest extends \Tester\TestCase
     {
         static $control = null;
         if ($control === null) {
-            /** @var IExampleChatControlFactory $factory */
-            $factory = $this->getService(IExampleChatControlFactory::class);
+            /** @var ExampleChatControlFactory $factory */
+            $factory = $this->getService(ExampleChatControlFactory::class);
             $control = $factory->create();
         }
         $this->control = $control;

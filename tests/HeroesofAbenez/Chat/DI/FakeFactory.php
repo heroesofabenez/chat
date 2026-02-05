@@ -4,11 +4,11 @@ declare(strict_types=1);
 namespace HeroesofAbenez\Chat\DI;
 
 /**
- * IFakeFactory
+ * FakeFactory
  *
  * @author Jakub Konečný
  */
-interface IFakeFactory
+interface FakeFactory
 {
     public function create(): \stdClass;
 }

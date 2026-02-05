@@ -8,7 +8,7 @@ use Nette\Application\UI\Form;
 final class ChatPresenter extends \Nette\Application\UI\Presenter
 {
     /** @inject */
-    public IExampleChatControlFactory $chatFactory;
+    public ExampleChatControlFactory $chatFactory;
     /** @inject */
     public NewChatMessageFormFactory $newChatMessageFormFactory;
 

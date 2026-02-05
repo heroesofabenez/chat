@@ -4,11 +4,11 @@ declare(strict_types=1);
 namespace HeroesofAbenez\Chat;
 
 /**
- * IExampleChatControlFactory
+ * ExampleChatControlFactory
  *
  * @author Jakub Konečný
  */
-interface IExampleChatControlFactory
+interface ExampleChatControlFactory
 {
     public function create(): ExampleChatControl;
 }

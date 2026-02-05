@@ -12,7 +12,7 @@ use Tester\Assert;
 use HeroesofAbenez\Chat\InvalidChatControlFactoryException;
 use HeroesofAbenez\Chat\InvalidMessageProcessorException;
 use HeroesofAbenez\Chat\InvalidDatabaseAdapterException;
-use HeroesofAbenez\Chat\IExampleChatControlFactory;
+use HeroesofAbenez\Chat\ExampleChatControlFactory;
 
 final class ChatExtensionTest extends \Tester\TestCase
 {
@@ -20,9 +20,9 @@ final class ChatExtensionTest extends \Tester\TestCase
 
     public function testChats(): void
     {
-        /** @var IExampleChatControlFactory $factory */
-        $factory = $this->getService(IExampleChatControlFactory::class);
-        Assert::type(IExampleChatControlFactory::class, $factory);
+        /** @var ExampleChatControlFactory $factory */
+        $factory = $this->getService(ExampleChatControlFactory::class);
+        Assert::type(ExampleChatControlFactory::class, $factory);
         Assert::same("", $factory->create()->characterProfileLink);
         $config = [
             "chat" => [
@@ -30,9 +30,9 @@ final class ChatExtensionTest extends \Tester\TestCase
             ]
         ];
         $this->refreshContainer($config);
-        /** @var IExampleChatControlFactory $factory */
-        $factory = $this->getService(IExampleChatControlFactory::class);
-        Assert::type(IExampleChatControlFactory::class, $factory);
+        /** @var ExampleChatControlFactory $factory */
+        $factory = $this->getService(ExampleChatControlFactory::class);
+        Assert::type(ExampleChatControlFactory::class, $factory);
         Assert::same("Abc:", $factory->create()->characterProfileLink);
         $config = [
             "chat" => [
@@ -44,7 +44,7 @@ final class ChatExtensionTest extends \Tester\TestCase
         Assert::exception(function () use ($config) {
             $this->refreshContainer($config);
         }, InvalidChatControlFactoryException::class);
-        $config["chat"]["chats"]["abc"] = IFakeFactory::class;
+        $config["chat"]["chats"]["abc"] = FakeFactory::class;
         Assert::exception(function () use ($config) {
             $this->refreshContainer($config);
         }, InvalidChatControlFactoryException::class);
