@@ -4,12 +4,13 @@ declare(strict_types=1);
 namespace HeroesofAbenez\Chat;
 
 use Nette\Application\UI\Form;
+use Nette\DI\Attributes\Inject;
 
 final class ChatPresenter extends \Nette\Application\UI\Presenter
 {
-    /** @inject */
+    #[Inject]
     public ExampleChatControlFactory $chatFactory;
-    /** @inject */
+    #[Inject]
     public NewChatMessageFormFactory $newChatMessageFormFactory;
 
     public function formatTemplateFiles(): array
