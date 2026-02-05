@@ -8,7 +8,7 @@ namespace HeroesofAbenez\Chat;
  *
  * @author Jakub Konečný
  * @property int $messagesPerPage
- * @property-read \Nette\Bridges\ApplicationLatte\Template $template
+ * @property-read \Nette\Bridges\ApplicationLatte\DefaultTemplate $template
  */
 abstract class ChatControl extends \Nette\Application\UI\Control
 {
