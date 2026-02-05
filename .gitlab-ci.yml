@@ -28,6 +28,7 @@ pages:
     environment:
         name: documentation
         url: https://heroesofabenez.gitlab.io/chat
+    image: nexendrie/php:8.3
     before_script:
         - composer update --prefer-dist --no-progress --no-suggest --no-interaction
     script:
