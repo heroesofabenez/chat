@@ -1,5 +1,6 @@
 Version 2.3.0-dev
 - raised minimal version of PHP to 8.3
+- added Slovak translation
 
 Version 2.2.0
 - raised minimal version of PHP to 8.1
