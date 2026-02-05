@@ -1,3 +1,6 @@
+Version 2.3.0-dev
+- raised minimal version of PHP to 8.3
+
 Version 2.2.0
 - raised minimal version of PHP to 8.1
 - deprecated most getters and setters
