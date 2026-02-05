@@ -19,7 +19,7 @@ Overview
 
 This package helps you with creating chats for your Nette application. It contains abstract component with basic template, data structures for message and person and DI extension which with minimal configuration registers and configure all the services for you. You just need to write some database logic.
 
-The default template and form for creating message have a few texts that need to translated so you need to have a translator registered in Nette DI container and Latte. We recommend package **nexendrie/translation**. This package though contains English and Czech translation in neon format. They can be found in folder *src/lang*. By default, this component do not use messages in default language but message ids in form chat.*string*.
+The default template and form for creating message have a few texts that need to translated so you need to have a translator registered in Nette DI container and Latte. We recommend package **nexendrie/translation**. This package though contains English, Czech and Slovak translation in neon format. They can be found in folder *src/lang*. By default, this component do not use messages in default language but message ids in form chat.*string*.
 
 Usage
 -----
