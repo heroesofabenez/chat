@@ -15,8 +15,8 @@ final class ChatCommandsProcessorTest extends \Tester\TestCase
 {
     use \Testbench\TCompiledContainer;
 
-    private const COMMAND_NAME = "test1";
-    private const TEXT = "/" . self::COMMAND_NAME;
+    private const string COMMAND_NAME = "test1";
+    private const string TEXT = "/" . self::COMMAND_NAME;
 
     protected ChatCommandsProcessor $model;
 

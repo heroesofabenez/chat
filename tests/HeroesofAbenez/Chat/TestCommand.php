@@ -5,7 +5,6 @@ namespace HeroesofAbenez\Chat;
 
 final class TestCommand extends BaseChatCommand
 {
-    /** @var string */
     protected string $name = "test1";
 
     public function execute(): string

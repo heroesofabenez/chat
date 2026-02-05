@@ -5,7 +5,7 @@ namespace HeroesofAbenez\Chat;
 
 final class Test2Command extends BaseChatCommand
 {
-    public const NAME = "test2";
+    public const string NAME = "test2";
 
     public function execute(): string
     {
