@@ -11,9 +11,9 @@ use Nette\Localization\Translator;
  *
  * @author Jakub Konečný
  */
-final class NewChatMessageFormFactory
+final readonly class NewChatMessageFormFactory
 {
-    public function __construct(private readonly Translator $translator)
+    public function __construct(private Translator $translator)
     {
     }
 

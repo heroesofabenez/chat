@@ -26,13 +26,13 @@ use Nette\DI\Definitions\ServiceDefinition;
 final class ChatExtension extends \Nette\DI\CompilerExtension
 {
     /** @internal */
-    public const SERVICE_CHAT_COMMANDS_PROCESSOR = "commandsProcessor";
+    public const string SERVICE_CHAT_COMMANDS_PROCESSOR = "commandsProcessor";
     /** @internal */
-    public const SERVICE_DATABASE_ADAPTER = "databaseAdapter";
+    public const string SERVICE_DATABASE_ADAPTER = "databaseAdapter";
     /** @internal */
-    public const SERVICE_NEW_MESSAGE_FORM = "newMessageForm";
+    public const string SERVICE_NEW_MESSAGE_FORM = "newMessageForm";
     /** @internal */
-    public const TAG_CHAT = "chat.chat";
+    public const string TAG_CHAT = "chat.chat";
 
     public function getConfigSchema(): \Nette\Schema\Schema
     {
