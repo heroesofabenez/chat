@@ -1,4 +1,4 @@
-Version 2.3.0-dev
+Version 2.3.0
 - raised minimal version of PHP to 8.3
 - added Slovak translation
 
