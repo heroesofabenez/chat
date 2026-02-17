@@ -24,7 +24,6 @@
     },
     "require-dev": {
         "nexendrie/code-quality": "dev-master",
-        "nexendrie/site-generator": "^0.9",
         "nexendrie/translation": "^2.4",
         "latte/latte": "^2.6"
     },
