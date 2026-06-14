@@ -5,8 +5,6 @@ application:
 routing:
     routes:
         "<presenter>/<action>": "Chat:default"
-services:
-    testbench.presenterMock: Testbench\Mocks\PresenterMock
 extensions:
     chat: HeroesofAbenez\Chat\DI\ChatExtension
     translation: Nexendrie\Translation\Bridges\NetteDI\TranslationExtension
@@ -20,3 +18,6 @@ translation:
     loader:
         folders!:
             - %appDir%/../src/lang
+mytester:
+    colors: true
+    coverageFormat: cobertura

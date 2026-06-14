@@ -3,22 +3,17 @@ declare(strict_types=1);
 
 namespace HeroesofAbenez\Chat;
 
-require __DIR__ . "/../../bootstrap.php";
+use MyTester\Attributes\Skip;
+use MyTester\Attributes\TestSuite;
 
-/**
- * @author Jakub Konečný
- * @testCase
- * @skip
- */
-final class NewChatMessageFormFactoryTest extends \Tester\TestCase
+#[TestSuite("NewChatMessageFormFactory")]
+final class NewChatMessageFormFactoryTest extends \MyTester\TestCase
 {
-    use \Testbench\TPresenter;
+    //use \Testbench\TPresenter;
 
+    #[Skip]
     public function testCreate(): void
     {
-        $this->checkAction("Chat:default");
+        //$this->checkAction("Chat:default");
     }
 }
-
-$test = new NewChatMessageFormFactoryTest();
-$test->run();

@@ -2,4 +2,7 @@
 <project name="Heroes of Abenez Chat" basedir="." default="test">
     <import file="vendor/nexendrie/code-quality/build.xml"/>
     <target name="test" depends="lint,cs,phpstan,tests"/>
+    <target name="tests" description="Unit tests">
+        <exec executable="tests/run-tests.php" logoutput="true" passthru="true" checkreturn="true"/>
+    </target>
 </project>

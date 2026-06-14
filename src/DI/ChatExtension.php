@@ -94,6 +94,7 @@ final class ChatExtension extends \Nette\DI\CompilerExtension
     }
 
     /**
+     * @return class-string
      * @throws InvalidDatabaseAdapterException
      */
     private function getDatabaseAdapter(): string

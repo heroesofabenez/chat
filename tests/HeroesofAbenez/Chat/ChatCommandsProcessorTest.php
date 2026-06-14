@@ -3,26 +3,24 @@ declare(strict_types=1);
 
 namespace HeroesofAbenez\Chat;
 
-use Tester\Assert;
+use MyTester\Attributes\BeforeTestSuite;
+use MyTester\Attributes\DataProvider;
+use MyTester\Attributes\TestSuite;
 
-require __DIR__ . "/../../bootstrap.php";
-
-/**
- * @author Jakub Konečný
- * @testCase
- */
-final class ChatCommandsProcessorTest extends \Tester\TestCase
+#[TestSuite("ChatCommandsProcessor")]
+final class ChatCommandsProcessorTest extends \MyTester\TestCase
 {
-    use \Testbench\TCompiledContainer;
+    use \MyTester\Bridges\NetteDI\TCompiledContainer;
 
     private const string COMMAND_NAME = "test1";
     private const string TEXT = "/" . self::COMMAND_NAME;
 
     protected ChatCommandsProcessor $model;
 
-    public function __construct()
+    #[BeforeTestSuite]
+    public function prepareModel(): void
     {
-        $this->model = $this->getService(ChatCommandsProcessor::class); // @phpstan-ignore assign.propertyType
+        $this->model = $this->getService(ChatCommandsProcessor::class);
         $this->model->addCommand(new TestCommand());
     }
 
@@ -30,8 +28,8 @@ final class ChatCommandsProcessorTest extends \Tester\TestCase
     {
         $model = clone $this->model;
         $model->addCommand(new Test2Command());
-        Assert::same("test", $model->parse("/" . Test2Command::NAME));
-        Assert::exception(function () use ($model) {
+        $this->assertSame("test", $model->parse("/" . Test2Command::NAME));
+        $this->assertThrowsException(function () use ($model) {
             $model->addCommand(new Test2Command());
         }, CommandNameAlreadyUsedException::class);
     }
@@ -40,20 +38,20 @@ final class ChatCommandsProcessorTest extends \Tester\TestCase
     {
         $model = clone $this->model;
         $model->addAlias(self::COMMAND_NAME, "test");
-        Assert::same("passed", $model->parse("/test"));
-        Assert::exception(function () use ($model) {
+        $this->assertSame("passed", $model->parse("/test"));
+        $this->assertThrowsException(function () use ($model) {
             $model->addAlias("abc", "test");
         }, CommandNotFoundException::class);
-        Assert::exception(function () use ($model) {
+        $this->assertThrowsException(function () use ($model) {
             $model->addAlias(self::COMMAND_NAME, "test");
         }, CommandNameAlreadyUsedException::class);
     }
 
     public function testExtractCommand(): void
     {
-        Assert::same("", $this->model->extractCommand("anagfdffd"));
-        Assert::same("", $this->model->extractCommand("/anagfdffd"));
-        Assert::same(self::COMMAND_NAME, $this->model->extractCommand(self::TEXT));
+        $this->assertSame("", $this->model->extractCommand("anagfdffd"));
+        $this->assertSame("", $this->model->extractCommand("/anagfdffd"));
+        $this->assertSame(self::COMMAND_NAME, $this->model->extractCommand(self::TEXT));
     }
 
     /**
@@ -62,37 +60,36 @@ final class ChatCommandsProcessorTest extends \Tester\TestCase
     public function getTexts(): array
     {
         return [
-            ["anagfdffd", "/anagfdffd",]
+            ["anagfdffd",],
+            ["/anagfdffd",],
         ];
     }
 
-    /**
-     * @dataProvider getTexts
-     */
+    #[DataProvider("getTexts")]
     public function testExtractParametersNothing(string $text): void
     {
         $result = $this->model->extractParameters($text);
-        Assert::type("array", $result);
-        Assert::count(0, $result);
+        $this->assertType("array", $result);
+        $this->assertCount(0, $result);
     }
 
     public function testExtractParameters(): void
     {
         $result = $this->model->extractParameters("/test abc 123");
-        Assert::type("array", $result);
-        Assert::count(2, $result);
+        $this->assertType("array", $result);
+        $this->assertCount(2, $result);
     }
 
     public function testHasCommand(): void
     {
-        Assert::false($this->model->hasCommand("anagfdffd"));
-        Assert::true($this->model->hasCommand(self::COMMAND_NAME));
+        $this->assertFalse($this->model->hasCommand("anagfdffd"));
+        $this->assertTrue($this->model->hasCommand(self::COMMAND_NAME));
     }
 
     public function testGetCommand(): void
     {
-        Assert::type(IChatCommand::class, $this->model->getCommand(self::COMMAND_NAME));
-        Assert::exception(function () {
+        $this->assertType(IChatCommand::class, $this->model->getCommand(self::COMMAND_NAME));
+        $this->assertThrowsException(function () {
             $this->model->getCommand("abc");
         }, CommandNotFoundException::class);
     }
@@ -101,12 +98,9 @@ final class ChatCommandsProcessorTest extends \Tester\TestCase
     {
         $model = clone $this->model;
         $model->addCommand(new Test2Command());
-        Assert::same("passed", $this->model->parse(self::TEXT));
-        Assert::null($model->parse("anagfdffd"));
-        Assert::null($model->parse("/anagfdffd"));
-        Assert::same("test12", $model->parse("/test2 1 2"));
+        $this->assertSame("passed", $this->model->parse(self::TEXT));
+        $this->assertNull($model->parse("anagfdffd"));
+        $this->assertNull($model->parse("/anagfdffd"));
+        $this->assertSame("test12", $model->parse("/test2 1 2"));
     }
 }
-
-$test = new ChatCommandsProcessorTest();
-$test->run();

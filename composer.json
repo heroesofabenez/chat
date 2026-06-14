@@ -23,8 +23,9 @@
         "nexendrie/utils": "^1.9"
     },
     "require-dev": {
-        "nexendrie/code-quality": "dev-master",
-        "nexendrie/translation": "^2.5"
+        "nexendrie/code-quality": "dev-mytester",
+        "nexendrie/translation": "^2.5",
+        "nette/bootstrap": "^3.2"
     },
     "suggest": {
         "nexendrie/translation": "Translator"

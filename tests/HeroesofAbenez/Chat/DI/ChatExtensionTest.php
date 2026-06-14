@@ -3,27 +3,36 @@ declare(strict_types=1);
 
 namespace HeroesofAbenez\Chat\DI;
 
-require __DIR__ . "/../../../bootstrap.php";
-
 use HeroesofAbenez\Chat\ChatCommandsProcessor;
 use HeroesofAbenez\Chat\Test2Command;
 use HeroesofAbenez\Chat\TestCommand;
-use Tester\Assert;
 use HeroesofAbenez\Chat\InvalidChatControlFactoryException;
 use HeroesofAbenez\Chat\InvalidMessageProcessorException;
 use HeroesofAbenez\Chat\InvalidDatabaseAdapterException;
 use HeroesofAbenez\Chat\ExampleChatControlFactory;
+use MyTester\Attributes\AfterTest;
+use MyTester\Attributes\RequiresPhpVersion;
+use MyTester\Attributes\Skip;
+use MyTester\Attributes\TestSuite;
 
-final class ChatExtensionTest extends \Tester\TestCase
+#[TestSuite("ChatExtension")]
+#[RequiresPhpVersion("8.4.0")]
+final class ChatExtensionTest extends \MyTester\TestCase
 {
-    use \Testbench\TCompiledContainer;
+    use \MyTester\Bridges\NetteDI\TCompiledContainer;
+
+    #[AfterTest]
+    public function restoreContainer(): void
+    {
+        $this->refreshContainer();
+    }
 
     public function testChats(): void
     {
         /** @var ExampleChatControlFactory $factory */
         $factory = $this->getService(ExampleChatControlFactory::class);
-        Assert::type(ExampleChatControlFactory::class, $factory);
-        Assert::same("", $factory->create()->characterProfileLink);
+        $this->assertType(ExampleChatControlFactory::class, $factory);
+        $this->assertSame("", $factory->create()->characterProfileLink);
         $config = [
             "chat" => [
                 "characterProfileLink" => "Abc:",
@@ -32,8 +41,8 @@ final class ChatExtensionTest extends \Tester\TestCase
         $this->refreshContainer($config);
         /** @var ExampleChatControlFactory $factory */
         $factory = $this->getService(ExampleChatControlFactory::class);
-        Assert::type(ExampleChatControlFactory::class, $factory);
-        Assert::same("Abc:", $factory->create()->characterProfileLink);
+        $this->assertType(ExampleChatControlFactory::class, $factory);
+        $this->assertSame("Abc:", $factory->create()->characterProfileLink);
         $config = [
             "chat" => [
                 "chats" => [
@@ -41,11 +50,11 @@ final class ChatExtensionTest extends \Tester\TestCase
                 ],
             ]
         ];
-        Assert::exception(function () use ($config) {
+        $this->assertThrowsException(function () use ($config) {
             $this->refreshContainer($config);
         }, InvalidChatControlFactoryException::class);
         $config["chat"]["chats"]["abc"] = FakeFactory::class;
-        Assert::exception(function () use ($config) {
+        $this->assertThrowsException(function () use ($config) {
             $this->refreshContainer($config);
         }, InvalidChatControlFactoryException::class);
     }
@@ -59,7 +68,7 @@ final class ChatExtensionTest extends \Tester\TestCase
                 ],
             ],
         ];
-        Assert::exception(function () use ($config) {
+        $this->assertThrowsException(function () use ($config) {
             $this->refreshContainer($config);
         }, InvalidMessageProcessorException::class);
     }
@@ -71,7 +80,7 @@ final class ChatExtensionTest extends \Tester\TestCase
                 "databaseAdapter" => \stdClass::class,
             ],
         ];
-        Assert::exception(function () use ($config) {
+        $this->assertThrowsException(function () use ($config) {
             $this->refreshContainer($config);
         }, InvalidDatabaseAdapterException::class);
     }
@@ -90,10 +99,7 @@ final class ChatExtensionTest extends \Tester\TestCase
         $command1 = $this->getService(TestCommand::class);
         /** @var Test2Command $command2 */
         $command2 = $this->getService(Test2Command::class);
-        Assert::true($processor->hasCommand($command1->getName()));
-        Assert::true($processor->hasCommand($command2->getName()));
+        $this->assertTrue($processor->hasCommand($command1->getName()));
+        $this->assertTrue($processor->hasCommand($command2->getName()));
     }
 }
-
-$test = new ChatExtensionTest();
-$test->run();
