@@ -1,3 +1,6 @@
+Version 2.4.0-dev
+- possible BC break: made parameter $characterColumn of ChatControl::__construct explicitly nullable
+
 Version 2.3.0
 - raised minimal version of PHP to 8.3
 - added Slovak translation

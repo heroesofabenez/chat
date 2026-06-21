@@ -25,7 +25,7 @@ abstract class ChatControl extends \Nette\Application\UI\Control
         protected DatabaseAdapter $database,
         protected string $textColumn,
         protected int $textValue,
-        string $characterColumn = null,
+        ?string $characterColumn = null,
         mixed $characterValue = null
     ) {
         $this->characterColumn = $characterColumn ?? $textColumn;

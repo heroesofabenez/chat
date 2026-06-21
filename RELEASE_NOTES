@@ -1,3 +1,3 @@
-A new version of Chat is out.
+A new version of Chat is out. Parameter $characterColumn of ChatControl::__construct is now explicitly nullable (implicitly nullable parameters are deprecate in PHP 8.4).
 
 For complete list of changes since previous version, see CHANGELOG.md.
